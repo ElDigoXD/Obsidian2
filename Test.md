@@ -1,6 +1,7 @@
+# Test
 laptop
 desktop
-
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 ```sh
 #!/bin/bash
@@ -20,4 +21,3 @@ chmod +x bin/*
 
 bin/mdbook build
 ```
-sed -e 's/\$\$/\\[/g' -e 's/"\(\$[^ ]*\)"/\\(\1/g'
