@@ -1,0 +1,646 @@
+       01 namenamenamenamenamenamenamenamenamenamenamename.
+
+       01 namenamenamenamenamenamenamenamenamenamenamename.
+           03 line 1 column 1 value " ".
+           03 line 3 column 15 value 
+               "*******************************************".
+           03 line 5 column 15 value 
+               "     HUMAN RESOURCE MANAGEMENT SYSTEM      ".
+           03 line 7 column 15 value 
+               "*******************************************".
+           03 line 10 column 25 value "1. HRMS WRITE".
+           03 line 12 column 25 value "2. HRMS READ".
+           03 line 14 column 25 value "3. EXIT".
+           03 line 16 column 25 value "ENTER YOUR CHOICE :".
+           03 line 16 column 46 using CHOICE.
+
+       01 namenamenamenamenamenamenamenamenamenamenamename.
+           03 line 1 column 1 value " ".
+           03 line 3 column 10 value 
+               "*******************************************".
+           03 line 5 column 10 value 
+               "     HUMAN RESOURCE MANAGEMENT SYSTEM      ".
+           03 line 7 column 10 value 
+               "*******************************************".
+           03 line 11 column 5 value " 1. EMPLOYEE FILE".
+           03 line 12 column 5 value " 2. LEAVE FILE".
+           03 line 13 column 5 value " 3. BRANCH FILE".
+           03 line 14 column 5 value " 4. DESIGNATION FILE".
+           03 line 15 column 5 value " 5. DEPARTMENT FILE".
+           03 line 16 column 5 value " 6. REVISION FILE".
+           03 line 17 column 5 value " 7. PAYMENT FILE".
+           03 line 18 column 5 value " 8. CONFIRMATION FILE".
+           03 line 19 column 5 value " 9. GRADE FILE".
+           03 line 20 column 5 value "10. TRANSFER FILE".
+           03 line 21 column 5 value "11. EMPLOYEE PERSONAL FILE".
+           03 line 22 column 5 value "12. EXIT".
+           03 line 23 column 25 value "ENTER U R CHOICE :".
+           03 line 23 column 45 using CHOICE.
+
+       01 namenamenamenamenamenamenamenamenamenamenamename.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER CODE :".
+           03 line 2 column 1 using EEMPID.
+
+       01 namenamenamenamenamenamenamenamenamenamenamename.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value " CODE                 :".
+           03 line 1 column 25 from EEMPID.
+           03 line 2 column 1 value " NAME                 :".
+           03 line 2 column 25 from EEMPNAME.
+           03 line 3 column 1 value " ADDRESS              :".
+           03 line 3 column 25 from EEMPADDR.
+           03 line 4 column 1 value " PHONE                :".
+           03 line 4 column 25 from EPHONE.
+           03 line 5 column 1 value " DATE OF JOIN         :".
+           03 line 5 column 25 from EDOJ.
+           03 line 6 column 1 value " DIPLOMA              :".
+           03 line 6 column 25 from EDIP.
+           03 line 7 column 1 value " UG                   :".
+           03 line 7 column 25 from EUG.
+           03 line 8 column 1 value " PG                   :".
+           03 line 8 column 25 from EPG.
+           03 line 9 column 1 value " PROFESSIONAL QUALITY :".
+           03 line 9 column 25 from EPROFQ.
+           03 line 10 column 1 value " SKILL SET            :".
+           03 line 10 column 25 from ESKILL.
+           03 line 11 column 1 value " GRADE NUMBER         :".
+           03 line 11 column 25 from EGRDNO.
+           03 line 12 column 1 value " BRANCH CODE          :".
+           03 line 12 column 25 from EBRNID.
+           03 line 13 column 1 value " DESIGNATION CODE     :".
+           03 line 13 column 25 from EDESID.
+           03 line 20 column 10 value 
+               "PRESS ENTER TO RETURN TO HRMS READ MENU".
+
+       01 leave-para-select.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER CODE :".
+           03 line 2 column 1 using LEMPID.
+
+       01 leave-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value " CODE           :".
+           03 line 1 column 19 from LEMPID.
+           03 line 2 column 1 value " DATE           :".
+           03 line 2 column 19 from LFMDATE.
+           03 line 3 column 1 value " DATE           :".
+           03 line 3 column 19 from LTODATE.
+           03 line 4 column 1 value " LEAVE CATEGORY :".
+           03 line 4 column 19 from LLEVCAT.
+           03 line 20 column 10 value 
+               "PRESS ENTER TO RETURN TO HRMS READ MENU".
+
+       01 branch-para-select.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value " BRANCH CODE :".
+           03 line 2 column 1 using BBRID.
+
+       01 branch-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value " BRANCH CODE    :".
+           03 line 1 column 19 from BBRID.
+           03 line 2 column 1 value " BRANCH NAME    :".
+           03 line 2 column 19 from BBRNAME.
+           03 line 3 column 1 value " BRANCH ADDRESS :".
+           03 line 3 column 19 from BBRADD.
+           03 line 4 column 1 value " PHONE          :".
+           03 line 4 column 19 from BBRPH.
+           03 line 5 column 1 value " E-MAIL         :".
+           03 line 5 column 19 from BEMAIL .
+           03 line 5 column 1 value " MANAGER NAME   :".
+           03 line 5 column 19 from BMGRNAME.
+           03 line 20 column 10 value 
+               "PRESS ENTER TO RETURN TO HRMS READ MENU".
+
+       01 designation-para-select.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER THE DESIGNATION CODE :".
+           03 line 2 column 1 using DES.
+
+       01 designation-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value " DESIGNATION CODE     :".
+           03 line 1 column 25 from DESID.
+           03 line 2 column 1 value " DESIGNATION          :".
+           03 line 2 column 25 from DESIGN.
+           03 line 3 column 1 value " DESIGNATION IN SHORT :".
+           03 line 3 column 25 from DESHRT.
+           03 line 1 column 1 value ' '.
+           03 line 1 column 1 value ' '.
+           03 line 1 column 1 value 
+               "PRESS ENTER TO RETURN TO HRMS READ MENU".
+------------------
+
+       01 department-para-select.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER DEP CODE :".
+           03 line 2 column 1 using DEPCODE.
+
+       01 department-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value " DEPARTMENT CODE :".
+           03 line 1 column 20 from DEPCODE.
+           03 line 2 column 1 value " DEPARTMENT NAME :".
+           03 line 2 column 20 from DEPNAME.
+           03 line 20 column 10 value 
+               "PRESS ENTER TO RETURN TO HRMS READ MENU".
+
+       01 revision-para-select.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER REVISION CODE:".
+           03 line 2 column 1 using RREVID.
+
+       01 revision-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value " REVISION CODE           :".
+           03 line 1 column 28 from RREVID.
+           03 line 2 column 1 value " EMPLOYEE CODE           :".
+           03 line 2 column 28 from REMPID.
+           03 line 3 column 1 value " DESIGNATION CODE        :".
+           03 line 3 column 28 from RDESCODE.
+           03 line 4 column 1 value " BASIC                   :".
+           03 line 4 column 28 from RBASIC.
+           03 line 5 column 1 value " HRA                     :".
+           03 line 5 column 28 from RHRA.
+           03 line 6 column 1 value " DPA                     :".
+           03 line 6 column 28 from RDPA.
+           03 line 7 column 1 value " PPA                     :".
+           03 line 7 column 28 from RPPA.
+           03 line 8 column 1 value " EDUCATIONAL ALLOWANCE   :".
+           03 line 8 column 28 from REDUA.
+           03 line 9 column 1 value " TECHNICAL JOURNAL       :".
+           03 line 9 column 28 from RTECHJR.
+           03 line 10 column 1 value " LUNCH ALLOWANCE        :".
+           03 line 10 column 27 from RLUNCHA.
+           03 line 11 column 1 value " CONVEYANCE             :".
+           03 line 11 column 27 from RCONVEY.
+           03 line 12 column 1 value " BUSINESS ATTIREMENT    :".
+           03 line 12 column 27 from RBUSATR.
+           03 line 13 column 1 value " LEAVE TRAVEL ALLOWANCE :".
+           03 line 13 column 27 from RLTA.
+           03 line 14 column 1 value " PF                     :".
+           03 line 14 column 27 from RPF.
+           03 line 15 column 1 value " ESI                    :".
+           03 line 15 column 27 from RESI.
+           03 line 16 column 1 value " REVISED DATE           :".
+           03 line 16 column 27 from RREVDATE.
+           03 line 20 column 10 value 
+               "PRESS ENTER TO RETURN TO HRMS READ MENU".
+
+       01 payment-para-select.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER EMP CODE :".
+           03 line 2 column 1 using PEMPID.
+
+       01 payment-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value " EMPLOYEE CODE                  :".
+           03 line 1 column 35 from PEMPID.
+           03 line 2 column 1 value " BASIC                          :".
+           03 line 2 column 35 from PBASIC.
+           03 line 3 column 1 value " DEARNESS ALLOWANCE             :".
+           03 line 3 column 35 from PDA.
+           03 line 4 column 1 value " CITY COMPENSATORY ALLOWANCE    :".
+           03 line 4 column 35 from PCCA.
+           03 line 5 column 1 value " HRA                            :".
+           03 line 5 column 35 from PHRA.
+           03 line 6 column 1 value " DPA                            :".
+           03 line 6 column 35 from PDPA.
+           03 line 7 column 1 value " PPA                            :".
+           03 line 7 column 35 from PPPA.
+           03 line 8 column 1 value " EDUCATIONAL ALLOWANCE          :".
+           03 line 8 column 35 from PEDUA.
+           03 line 9 column 1 value " TECHNICAL JOURNAL              :".
+           03 line 9 column 35 from PTECHJR.
+           03 line 10 column 1 value " LUNCH ALLOWANCE               :".
+           03 line 10 column 34 from PLUNCHA.
+           03 line 11 column 1 value " CONVEYANCE                    :".
+           03 line 11 column 34 from PCONVEY.
+           03 line 12 column 1 value " BUSINESS ATTIREMENT           :".
+           03 line 12 column 34 from PBUSATR.
+           03 line 13 column 1 value " LEAVE TRAVEL ALLOWANCE        :".
+           03 line 13 column 34 from PLTA.
+           03 line 14 column 1 value " PF                            :".
+           03 line 14 column 34 from PPF.
+           03 line 15 column 1 value " ESI                           :".
+           03 line 15 column 34 from PESI.
+           03 line 16 column 1 value " GRATUITY                      :".
+           03 line 16 column 34 from PGRTY.
+           03 line 17 column 1 value " PROFESSIONAL TAX              :".
+           03 line 17 column 34 from PPTAX.
+           03 line 18 column 1 value " INCOME TAX                    :".
+           03 line 18 column 34 from PITAX.
+           03 line 19 column 1 value " LOAN                          :".
+           03 line 19 column 34 from PLOAN.
+           03 line 20 column 1 value " LOAN DEDUCTION AMOUNT         :".
+           03 line 20 column 34 from PLOANDA.
+           03 line 21 column 1 value " OTHER DEDUCTION               :".
+           03 line 21 column 34 from POTHERD.
+           03 line 22 column 1 value " PERFORMANCE INCENTIVE         :".
+           03 line 22 column 34 from PPERINC.
+           03 line 23 column 1 value " MEDICAL REIMBURSEMENT         :".
+           03 line 23 column 34 from PMEDI.
+           03 line 24 column 1 value " BOOK REIMBURSEMENT            :".
+           03 line 24 column 34 from PBOOK.
+
+       01 payment-para-menu-2.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value " ENTERTAINMENT                  :".
+           03 line 1 column 35 from PENTER.
+           03 line 2 column 1 value " PHONE                          :".
+           03 line 2 column 35 from PTPH.
+           03 line 3 column 1 value " HOUSE RELATED                  :".
+           03 line 3 column 35 from PHOUSE.
+           03 line 4 column 1 value " VEHICLE MAINTENANCE            :".
+           03 line 4 column 35 from PVEHMAN.
+           03 line 5 column 1 value " CREDIT CARD                    :".
+           03 line 5 column 35 from PCREDIT.
+           03 line 6 column 1 value " CLUB                           :".
+           03 line 6 column 35 from PCLUB.
+           03 line 7 column 1 value " CASUAL LEAVE                   :".
+           03 line 7 column 35 from PCL.
+           03 line 8 column 1 value " SICK LEAVE                     :".
+           03 line 8 column 35 from PSL.
+           03 line 9 column 1 value " PAID LEAVE                     :".
+           03 line 9 column 35 from PPL.
+           03 line 10 column 1 value " LEAVE LOSS OF PAY             :".
+           03 line 10 column 34 from PLLOP.
+           03 line 11 column 1 value " OTHER LEAVES                  :".
+           03 line 11 column 34 from POTHERL.
+           03 line 20 column 10 value 
+               "PRESS ENTER TO RETURN TO HRMS READ MENU".
+
+       01 confirmation-para-select.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER CODE :".
+           03 line 2 column 1 using CCONID.
+
+       01 confirmation-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value " CONFIRMATION CODE :".
+           03 line 1 column 22 from CCONID.
+           03 line 2 column 1 value " EMPLOYEE CODE     :".
+           03 line 2 column 22 from CEMPID.
+           03 line 3 column 1 value " CONFIRMATION DATE :".
+           03 line 3 column 22 from CCDATE.
+           03 line 20 column 10 value 
+               "PRESS ENTER TO RETURN TO HRMS READ MENU".
+
+       01 grade-para-select.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER GRADE NO. :".
+           03 line 2 column 1 using GR.
+
+       01 grade-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value " GRADE NO.   :".
+           03 line 1 column 16 from GGRADE.
+           03 line 2 column 1 value " DESIGNATION :".
+           03 line 2 column 16 from GDESIGN.
+           03 line 1 column 1 value ' '.
+           03 line 1 column 1 value ' '.
+
+       01 transfer-para-select.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER TRANSFER CODE :".
+           03 line 2 column 1 using TTRFID.
+
+       01 transfer-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value " TRANSFER CODE     :".
+           03 line 1 column 22 from TTRFID.
+           03 line 2 column 1 value " EMP CODE          :".
+           03 line 2 column 22 from TEMPID.
+           03 line 3 column 1 value " OLD BRANCH CODE   :".
+           03 line 3 column 22 from TOBRID.
+           03 line 4 column 1 value " TRANSFER DATE     :".
+           03 line 4 column 22 from TTRFDT.
+           03 line 20 column 10 value 
+               "PRESS ENTER TO RETURN TO HRMS READ MENU".
+
+       01 emppersonal-para-select.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER EMP CODE :".
+           03 line 2 column 1 using EPEMPID.
+
+       01 emppersonal-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value " EMPLOYEE CODE     :".
+           03 line 1 column 22 from EPEMPID.
+           03 line 2 column 1 value " TEMPORARY ADDRESS :".
+           03 line 2 column 22 from EPTADD.
+           03 line 3 column 1 value " PHONE             :".
+           03 line 3 column 22 from EPTPH.
+           03 line 4 column 1 value " DOB               :".
+           03 line 4 column 22 from EPDOB.
+           03 line 5 column 1 value " POB               :".
+           03 line 5 column 22 from EPPOB.
+           03 line 6 column 1 value " LANGUAGE KNOWN    :".
+           03 line 6 column 22 from EPLANG.
+           03 line 7 column 1 value " BLOOD GROUP       :".
+           03 line 7 column 22 from EPBLOOD.
+           03 line 8 column 1 value " WEIGHT            :".
+           03 line 8 column 22 from EPWEIGHT.
+           03 line 9 column 1 value " HEIGHT            :".
+           03 line 9 column 22 from EPHEIGHT.
+           03 line 10 column 1 value " VISION           :".
+           03 line 10 column 21 from EPVISION.
+           03 line 11 column 1 value " FATHER'S NAME    :".
+           03 line 11 column 21 from EPFATHER.
+           03 line 12 column 1 value " DOB OF FATHER    :".
+           03 line 12 column 21 from EPDOBF.
+           03 line 13 column 1 value " MOTHER'S NAME    :".
+           03 line 13 column 21 from EPMOTHER.
+           03 line 14 column 1 value " DOB OF MOTHER    :".
+           03 line 14 column 21 from EPDOBM.
+           03 line 15 column 1 value " SPOUSE NAME      :".
+           03 line 15 column 21 from EPSPOUSE.
+           03 line 16 column 1 value " CHILD NAME       :".
+           03 line 16 column 21 from EPCHILD.
+           03 line 17 column 1 value " DOB OF CHILD     :".
+           03 line 17 column 21 from EPDOBC.
+           03 line 20 column 10 value 
+               "PRESS ENTER TO RETURN TO HRMS READ MENU".
+
+       01 invalid-code.
+           03 line 1 column 1 value " ".
+           03 line 12 column 30 value "INVALID CODE".
+           03 line 20 column 10 value 
+               "PRESS ENTER TO RETURN TO HRMS READ MENU".
+------------------
+
+
+       01 main-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 3 column 10 value 
+               "*******************************************".
+           03 line 5 column 10 value 
+               "     HUMAN RESOURCE MANAGEMENT SYSTEM      ".
+           03 line 7 column 10 value 
+               "*******************************************".
+           03 line 11 column 5 value " 1. EMPLOYEE FILE".
+           03 line 12 column 5 value " 2. LEAVE FILE".
+           03 line 13 column 5 value " 3. BRANCH FILE".
+           03 line 14 column 5 value " 4. DESIGNATION FILE".
+           03 line 15 column 5 value " 5. DEPARTMENT FILE".
+           03 line 16 column 5 value " 6. REVISION FILE".
+           03 line 17 column 5 value " 7. PAYMENT FILE".
+           03 line 18 column 5 value " 8. CONFIRMATION FILE".
+           03 line 19 column 5 value " 9. GRADE FILE".
+           03 line 20 column 5 value "10. TRANSFER FILE".
+           03 line 21 column 5 value "11. EMPLOYEE PERSONAL FILE".
+           03 line 22 column 5 value "12. EXIT".
+           03 line 23 column 25 value "ENTER U R CHOICE :".
+           03 line 23 column 45 using CHOICE.
+
+       01 emp-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER CODE :".
+           03 line 1 column 35 using EEMPID.
+           03 line 2 column 1 value "ENTER NAME :".
+           03 line 2 column 35 using EEMPNAME.
+           03 line 3 column 1 value "ENTER ADDRESS :".
+           03 line 3 column 35 using EEMPADDR.
+           03 line 4 column 1 value "ENTER PHONE :".
+           03 line 4 column 35 using EPHONE.
+           03 line 5 column 1 value "ENTER DATE OF JOIN :".
+           03 line 5 column 35 using EDOJ.
+           03 line 6 column 1 value "ENTER DIPLOMA :".
+           03 line 6 column 35 using EDIP.
+           03 line 7 column 1 value "ENTER UG :".
+           03 line 7 column 35 using EUG.
+           03 line 8 column 1 value "ENTER PG :".
+           03 line 8 column 35 using EPG.
+           03 line 9 column 1 value "ENTER PROFESSIONAL QUALITY :".
+           03 line 9 column 35 using EPROFQ.
+           03 line 10 column 1 value "ENTER SKILL SET :".
+           03 line 10 column 35 using ESKILL.
+           03 line 11 column 1 value "ENTER GRADE NUMBER :".
+           03 line 11 column 35 using EGRDNO.
+           03 line 12 column 1 value "ENTER BRANCH CODE :".
+           03 line 12 column 35 using EBRNID.
+           03 line 13 column 1 value "ENTER DESIGNATION CODE :".
+           03 line 13 column 35 using EDESID.
+
+       01 leave-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER CODE :".
+           03 line 1 column 35 using LEMPID.
+           03 line 2 column 1 value "ENTER FROM DATE :".
+           03 line 2 column 35 using LFMDATE.
+           03 line 3 column 1 value "ENTER TO DATE :".
+           03 line 3 column 35 using LTODATE.
+           03 line 4 column 1 value "ENTER LEAVE CATEGORY :".
+           03 line 4 column 35 using LLEVCAT.
+
+       01 branch-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER BRANCH CODE :".
+           03 line 1 column 35 using BBRID.
+           03 line 2 column 1 value "ENTER BRANCH NAME :".
+           03 line 2 column 35 using BBRNAME.
+           03 line 3 column 1 value "ENTER BRANCH ADDRESS :".
+           03 line 3 column 35 using BBRADD.
+           03 line 4 column 1 value "ENTER PHONE :".
+           03 line 4 column 35 using BBRPH.
+           03 line 5 column 1 value "ENTER E-MAIL :".
+           03 line 5 column 35 using BEMAIL.
+           03 line 5 column 1 value "ENTER MANAGER NAME :".
+           03 line 5 column 35 using BMGRNAME.
+
+       01 designation-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER DESIGNATION CODE :".
+           03 line 1 column 35 using DESID.
+           03 line 2 column 1 value "ENTER DESIGNATION :".
+           03 line 2 column 35 using DESIGN.
+           03 line 3 column 1 value "ENTER DES IN SHORT :".
+           03 line 3 column 35 using DESHRT.
+
+       01 department-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER DEPARTMENT CODE :".
+           03 line 1 column 35 using DEPCODE.
+           03 line 2 column 1 value "ENTER DEPARTMENT NAME :".
+           03 line 2 column 35 using DEPNAME.
+
+       01 revision-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER REVISION CODE :".
+           03 line 1 column 35 using RREVID.
+           03 line 2 column 1 value "ENTER EMPLOYEE CODE :".
+           03 line 2 column 35 using REMPID.
+           03 line 3 column 1 value "ENTER DESIGNATION CODE :".
+           03 line 3 column 35 using RDESCODE.
+           03 line 4 column 1 value "ENTER BASIC :".
+           03 line 4 column 35 using RBASIC.
+           03 line 5 column 1 value "ENTER HRA :".
+           03 line 5 column 35 using RHRA.
+           03 line 6 column 1 value "ENTER DPA :".
+           03 line 6 column 35 using RDPA.
+           03 line 7 column 1 value "ENTER PPA :".
+           03 line 7 column 35 using RPPA.
+           03 line 8 column 1 value "ENTER EDUCATIONAL ALLOWANCE :".
+           03 line 8 column 35 using REDUA.
+           03 line 9 column 1 value "ENTER TECH. JOURNAL :".
+           03 line 9 column 35 using RTECHJR.
+           03 line 10 column 1 value "ENTER LUNCH ALLOWANCE :".
+           03 line 10 column 35 using RLUNCHA.
+           03 line 11 column 1 value "ENTER CONVEYANCE :".
+           03 line 11 column 35 using RCONVEY.
+           03 line 12 column 1 value "ENTER BUSINESS ATTIREMENT :".
+           03 line 12 column 35 using RBUSATR.
+           03 line 13 column 1 value "ENTER LEAVE TRAVEL ALLOWANCE :".
+           03 line 13 column 35 using RLTA.
+           03 line 14 column 1 value "ENTER PF :".
+           03 line 14 column 35 using RPF.
+           03 line 15 column 1 value "ENTER ESI :".
+           03 line 15 column 35 using RESI.
+           03 line 16 column 1 value "ENTER REVISED DATE :".
+           03 line 16 column 35 using RREVDATE.
+
+       01 payment-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER EMPLOYEE CODE :".
+           03 line 1 column 35 using PEMPID.
+           03 line 2 column 1 value "ENTER BASIC :".
+           03 line 2 column 35 using PBASIC.
+           03 line 3 column 1 value "ENTER DA :".
+           03 line 3 column 35 using PDA.
+           03 line 4 column 1 value "ENTER CCA :".
+           03 line 4 column 35 using PCCA.
+           03 line 5 column 1 value "ENTER HRA :".
+           03 line 5 column 35 using PHRA.
+           03 line 6 column 1 value "ENTER DPA :".
+           03 line 6 column 35 using PDPA.
+           03 line 7 column 1 value "ENTER PPA :".
+           03 line 7 column 35 using PPPA.
+           03 line 8 column 1 value "ENTER EDUCATIONAL ALLOWANCE :".
+           03 line 8 column 35 using PEDUA.
+           03 line 9 column 1 value "ENTER TECH. JOURNAL :".
+           03 line 9 column 35 using PTECHJR.
+           03 line 10 column 1 value "ENTER LUNCH ALLOWANCE :".
+           03 line 10 column 35 using PLUNCHA.
+           03 line 11 column 1 value "ENTER CONVEYANCE :".
+           03 line 11 column 35 using PCONVEY.
+           03 line 12 column 1 value "ENTER BUSINESS ATTIREMENT :".
+           03 line 12 column 35 using PBUSATR.
+           03 line 13 column 1 value "ENTER LEAVE TRAVEL ALLOWANCE :".
+           03 line 13 column 35 using PLTA.
+           03 line 14 column 1 value "ENTER PF :".
+           03 line 14 column 35 using PPF.
+           03 line 15 column 1 value "ENTER ESI :".
+           03 line 15 column 35 using PESI.
+           03 line 16 column 1 value "ENTER GRATUITY :".
+           03 line 16 column 35 using PGRTY.
+           03 line 17 column 1 value "ENTER PROFESSIONAL TAX :".
+           03 line 17 column 35 using PPTAX.
+           03 line 18 column 1 value "ENTER INCOME TAX :".
+           03 line 18 column 35 using PITAX.
+           03 line 19 column 1 value "ENTER LOAN :".
+           03 line 19 column 35 using PLOAN.
+           03 line 20 column 1 value "ENTER LOAN DEDUCTION AMOUNT :".
+           03 line 20 column 35 using PLOANDA.
+           03 line 21 column 1 value "ENTER OTHER DEDUCTION :".
+           03 line 21 column 35 using POTHERD.
+           03 line 22 column 1 value "ENTER PERFORMANCE INCENTIVE :".
+           03 line 22 column 35 using PPERINC.
+           03 line 23 column 1 value "ENTER MEDICAL REIMBURSEMENT :".
+           03 line 23 column 35 using PMEDI.
+           03 line 24 column 1 value "ENTER BOOK REIMBURSEMENT :".
+           03 line 24 column 35 using PBOOK.
+
+       01 payment-para-menu-2.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER ENTERTAINMENT :".
+           03 line 1 column 35 using PENTER.
+           03 line 2 column 1 value "ENTER PHONE :".
+           03 line 2 column 35 using PTPH.
+           03 line 3 column 1 value "ENTER HOUSE RELATED :".
+           03 line 3 column 35 using PHOUSE.
+           03 line 4 column 1 value "ENTER VEHICLE MAINTENANCE :".
+           03 line 4 column 35 using PVEHMAN.
+           03 line 5 column 1 value "ENTER CREDIT CARD :".
+           03 line 5 column 35 using PCREDIT.
+           03 line 6 column 1 value "ENTER CLUB :".
+           03 line 6 column 35 using PCLUB.
+           03 line 7 column 1 value "ENTER CLUB :".
+           03 line 7 column 35 using PCLUB.
+           03 line 8 column 1 value "ENTER CLUB :".
+           03 line 8 column 35 using PCLUB.
+           03 line 9 column 1 value "ENTER CASUAL LEAVE :".
+           03 line 9 column 35 using PCL.
+           03 line 10 column 1 value "ENTER SICK LEAVE :".
+           03 line 10 column 35 using PSL.
+           03 line 11 column 1 value "ENTER PAID LEAVE :".
+           03 line 11 column 35 using PPL.
+           03 line 12 column 1 value "ENTER LEAVE LOSS OF PAY :".
+           03 line 12 column 35 using PLLOP.
+           03 line 13 column 1 value "ENTER OTHER LEAVES :".
+           03 line 13 column 35 using POTHERL.
+
+       01 confirmation-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER CONFIRMATION CODE :".
+           03 line 1 column 35 using CCONID.
+           03 line 2 column 1 value "ENTER EMP CODE :".
+           03 line 2 column 35 using CEMPID.
+           03 line 3 column 1 value "ENTER CONFIRMATION DATE :".
+           03 line 3 column 35 using CCDATE.
+
+       01 grade-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER GRADE NO. :".
+           03 line 1 column 35 using GGRADE.
+           03 line 2 column 1 value "ENTER DESIGNATION :".
+           03 line 2 column 35 using GDESIGN.
+
+       01 transfer-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER TRANSFER CODE :".
+           03 line 1 column 35 using TTRFID.
+           03 line 2 column 1 value "ENTER EMP CODE :".
+           03 line 2 column 35 using TEMPID.
+           03 line 3 column 1 value "ENTER OLD BRANCH CODE :".
+           03 line 3 column 35 using TOBRID.
+           03 line 4 column 1 value "ENTER TRANSFER DATE :".
+           03 line 4 column 35 using TTRFDT.
+
+       01 emppersonal-para-menu.
+           03 line 1 column 1 value " ".
+           03 line 1 column 1 value "ENTER EMP CODE :".
+           03 line 1 column 35 using EPEMPID.
+           03 line 2 column 1 value "ENTER TEMP ADDRESS :".
+           03 line 2 column 35 using EPTADD.
+           03 line 3 column 1 value "ENTER PHONE :".
+           03 line 3 column 35 using EPTPH.
+           03 line 4 column 1 value "ENTER DOB :".
+           03 line 4 column 35 using EPDOB.
+           03 line 5 column 1 value "ENTER POB :".
+           03 line 5 column 35 using EPPOB.
+           03 line 6 column 1 value "ENTER LANGUAGE KNOWN :".
+           03 line 6 column 35 using EPLANG.
+           03 line 7 column 1 value "ENTER BLOOD GROUP :".
+           03 line 7 column 35 using EPBLOOD.
+           03 line 8 column 1 value "ENTER WEIGHT :".
+           03 line 8 column 35 using EPWEIGHT.
+           03 line 9 column 1 value "ENTER HEIGHT :".
+           03 line 9 column 35 using EPHEIGHT.
+           03 line 10 column 1 value "ENTER VISION :".
+           03 line 10 column 35 using EPVISION.
+           03 line 11 column 1 value "ENTER FATHER'S NAME :".
+           03 line 11 column 35 using EPFATHER.
+           03 line 12 column 1 value "ENTER DOB OF FATHER :".
+           03 line 12 column 35 using EPDOBF.
+           03 line 13 column 1 value "ENTER MOTHER'S NAME :".
+           03 line 13 column 35 using EPMOTHER.
+           03 line 14 column 1 value "ENTER DOB OF MOTHER :".
+           03 line 14 column 35 using EPDOBM.
+           03 line 15 column 1 value "ENTER SPOUSE NAME :".
+           03 line 15 column 35 using EPSPOUSE.
+           03 line 16 column 1 value "ENTER CHILD NAME :".
+           03 line 16 column 35 using EPCHILD.
+           03 line 17 column 1 value "ENTER DOB OF CHILD :".
+           03 line 17 column 35 using EPDOBC.
+
