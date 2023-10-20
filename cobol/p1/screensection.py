@@ -42,7 +42,7 @@ class ss_element:
         return f"line {self.line} column {self.column} {self.type} {self.content}."
     def __repr__(self) -> str:
         return self.__str__();
-elements =  []
+elements = []
 
 def emit_ss(elements: List[ss_element]):
     print(f"       screen section.")
@@ -55,7 +55,7 @@ for line in input.splitlines():
     if line =="""DISPLAY " " AT 0101 ERASE EOS.""":
         continue
     if line.startswith("DISPLAY"):
-        elements.append( ss_element().from_display(line))
+        elements.append(ss_element().from_display(line))
     elif line.startswith("ACCEPT"):
         elements.append(ss_element().from_accept(line))
 
