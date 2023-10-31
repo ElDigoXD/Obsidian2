@@ -1,3 +1,7 @@
+'''
+Author: Diego Sanz Fuertes 
+Copyright: Copyright 2023, Diego Sanz Fuertes 
+'''
 
 import re
 

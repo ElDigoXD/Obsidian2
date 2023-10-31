@@ -1,3 +1,8 @@
+'''
+Author: Diego Sanz Fuertes 
+Copyright: 2023, Diego Sanz Fuertes 
+'''
+
 import re
 from typing import List, Self
 

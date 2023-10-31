@@ -1,3 +1,7 @@
+      /    Original author: Unknown 
+      /    Author: Diego Sanz Fuertes 
+      /    Copyright: Unknown
+       
        IDENTIFICATION DIVISION.
        PROGRAM-ID. MAINHRMS.
 

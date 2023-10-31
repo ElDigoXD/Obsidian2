@@ -1,3 +1,5 @@
+      /    Original author: Unknown 
+      /    Copyright: Unknown
        IDENTIFICATION DIVISION.
        PROGRAM-ID. MAINHRMS.
 
