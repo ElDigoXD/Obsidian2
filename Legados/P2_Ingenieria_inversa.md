@@ -99,6 +99,10 @@ Al ejecutarlo se muestra la cadena previamente descubierta `Stocks v 3.03` y una
 
 # Paso 3: Exploración del código
 
+Para comprender como funciona el programa y las comprobaciones de la clave hardware se ha desensamblado el código. Se han probado las diferentes herramientas listadas en la sección de [[#herramientas utilizadas]] y los problemas encontrados con ellas en [[#problemas encontrados]]. En esta sección se explica el uso de el desensamblador ghidra para explorar el código y en la siguiente sección se modificará el programa con dicha herramienta.
+
+Ghidra es una suite de herramientas para ingeniería inversa de código libre desarrollada por la NSA. Soporta multiples arquitecturas y plataformas. En esta practica se ha utilizado para un ejecutable para x64 y Linux.
+
 
 
 # Paso 4: Parcheo del programa
