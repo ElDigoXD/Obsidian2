@@ -103,6 +103,42 @@ Para comprender como funciona el programa y las comprobaciones de la clave hardw
 
 Ghidra es una suite de herramientas para ingeniería inversa de código libre desarrollada por la NSA. Soporta multiples arquitecturas y plataformas. En esta practica se ha utilizado para un ejecutable para x64 y Linux.
 
+Al abrir ghidra, crear un proyecto, añadir el archivo ejecutable y hacer doble click sobre el se muestra una ventana ofreciendo la opción de analizar el archivo. Una vez analizado (con las opciones por defecto), se abre la ventana principal, mostrando el código desensamblado y el decompilado en pseudo C.
+
+En el listado de funciones se puede navegar fácilmente entre ellas y empezar a ponerles nombres. La función del siguiente ejemplo se puede interpretar que es la función main, además de que contiene la cadena "Stocks v 3.03" la cuál se mostraba por pantalla al ejecutar el archivo. Ghidra permite renombrar funciones y variables para hacer más sencillo el análisis.
+
+```c
+// Fragmento original
+undefined8 FUN_001009e0(undefined8 param_1,undefined8 *param_2)
+{
+  ...  
+  local_40 = *(long *)(in_FS_OFFSET + 0x28);
+  puts("Stocks v 3.03");
+  FUN_00101480(*param_2);
+  ...
+}
+
+// Fragmento renombrado
+int main(int argc,char **argv)
+{
+  ...  
+  local_40 = *(long *)(in_FS_OFFSET + 0x28);
+  puts("Stocks v 3.03");
+  FUN_00101480(*argv);
+  ...
+}
+```
+
+Antes de entrar en las demás funciones se puede observar el uso de diferentes llamadas al sistema y libc:
+- puts: escribe una string a stdout.
+- ioperm: establece permisos de e/s de un puerto.
+- in/out: e/s en un puerto de bajo nivel.
+- exit: termina el proceso con un código .
+- system: ejecuta un comando de consola.
+- putchar: escribe un byte a stdout.
+- popen/pclose: comunicación entre procesos.
+- \_\_sprintf_chk: formateo de una string.
+
 
 
 # Paso 4: Parcheo del programa
