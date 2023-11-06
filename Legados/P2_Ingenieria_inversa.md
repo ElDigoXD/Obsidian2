@@ -168,17 +168,19 @@ exit(1 [no return ...]
 ```
 
 Esta vez avanza más en la ejecución, `strstr` ya no devuelve nil, se cierra el stream con `pclose` y `ioperm` intenta obtener permiso para usar un puerto, probablemente el puerto paralelo de la llave, pero falla mostrando otro error distinto. Al no disponer de un ordenador con drivers para un puerto paralelo no se puede avanzar mas en la ejecución.
+
 # 5. Paso 3: Exploración del código
 
-Para comprender como funciona el programa y las comprobaciones de la clave hardware se ha desensamblado el código. Se han probado las diferentes herramientas listadas en la sección de [[#herramientas utilizadas]] y los problemas encontrados con ellas en [[#problemas encontrados]]. En esta sección se explica el uso de el desensamblador ghidra para explorar el código y en la siguiente sección se modificará el programa con dicha herramienta.
+Para comprender como funciona el programa y las comprobaciones de la clave hardware se ha desensamblado el código. Se han probado las diferentes herramientas listadas en la sección 2. Herramientas utilizadas, y los problemas encontrados con ellas en 7. Problemas encontrados. En esta sección se explica el uso de el desensamblador ghidra para explorar el código y en la siguiente sección se modificará el programa con dicha herramienta.
 
-## 5.1 Ghidra
+## 5.1. Ghidra
 
 Ghidra es una suite de herramientas para ingeniería inversa de código libre desarrollada por la NSA. Soporta multiples arquitecturas y plataformas. En esta practica se ha utilizado para un ejecutable para x64 y Linux.
 
 Al abrir ghidra, crear un proyecto, añadir el archivo ejecutable y hacer doble click sobre el se muestra una ventana ofreciendo la opción de analizar el archivo. Una vez analizado (con las opciones por defecto), se abre la ventana principal, mostrando el código desensamblado y el decompilado en pseudo C.
 
-## 5.2 Función 1: main
+## 5.2. Función 1: main
+
 En el listado de funciones se puede navegar fácilmente entre ellas y empezar a ponerles nombres. La función del siguiente ejemplo se puede interpretar que es la función main, además de que contiene la cadena "Stocks v 3.03" la cuál se mostraba por pantalla al ejecutar el archivo. Ghidra permite renombrar funciones y variables para hacer más sencillo el análisis.
 
 ```c
@@ -203,7 +205,7 @@ int main(int argc,char **argv)
 }
 ```
 
-## 5.3 Llamadas al sistema y libC
+## 5.3. Llamadas al sistema y libC
 
 Antes de renombrar las demás funciones, se puede observar el uso de diferentes llamadas al sistema y libc:
 
@@ -220,11 +222,11 @@ Antes de renombrar las demás funciones, se puede observar el uso de diferentes 
 
 Gracias al enunciado del problema se sabe que la comprobación se realiza con un puerto paralelo por lo que el uso de `ioperm`, `in` y `out` podría ser para ese fin. `ioperm` se llama con tres parámetros: `ioperm(0x378,2,1)` siendo el primero de ellos el puerto. Buscando en internet el número del puerto se ha descubierto que, en efecto, el puerto pertenece históricamente al puerto paralelo LPT1 o LPT2.
 
-## 5.4 Función 2: Comprobación de permisos
+## 5.4. Función 2: Comprobación de permisos
 
-Continuando con las funciones, la siguiente recibe como parámetro `*argv` o lo que es lo mismo el nombre del fichero ejecutado. En un vistazo rápido salta a la vista la similitud con las llamadas obtenidas con `ltrace` en la sección [[#paso 2 Ejecución del programa]].
+Continuando con las funciones, la siguiente recibe como parámetro `*argv` o lo que es lo mismo el nombre del fichero ejecutado. En un vistazo rápido salta a la vista la similitud con las llamadas obtenidas con `ltrace` en la sección 4. Paso 2: Ejecución del programa.
 
-Empezando por `__sprintf_chk(acStack_428, 1, 0x400, "ls -l %s", file_name);`, el resultado de este método es un comando para obtener información sobre el archivo ejecutado. La siguiente linea crea un stream con la salida de la ejecución del comando. Mas adelante en la función se lee de ese stream y comprueba si contiene la string "rws" mediante `strstr(ls_string_buffer, "rws");`, si no contiene la string, imprime el mensaje de error de permisos obtenido anteriormente (ver apartado [[#impresiones ofuscadas]]) y termina el programa con un `exit(-1);`. La función queda así:
+Empezando por `__sprintf_chk(acStack_428, 1, 0x400, "ls -l %s", file_name);`, el resultado de este método es un comando para obtener información sobre el archivo ejecutado. La siguiente linea crea un stream con la salida de la ejecución del comando. Mas adelante en la función se lee de ese stream y comprueba si contiene la string "rws" mediante `strstr(ls_string_buffer, "rws");`, si no contiene la string, imprime el mensaje de error de permisos obtenido anteriormente (ver apartado 5.5. Impresiones ofuscadas) y termina el programa con un `exit(-1);`. La función queda así:
 
 ```c
 // Comprobaciones de stack omitidas.
@@ -252,7 +254,7 @@ void comprobar_sticky_bits(char *file_name)
 }
 ```
 
-## 5.5 Impresiones ofuscadas
+## 5.5. Impresiones ofuscadas
 
 El código oculta las cadenas que se muestran mediante ofuscación sencilla. Existen dos "estilos" de ofuscación, el primero trata de dividir los números de un array entre dos o tres y mostrar el resultado con un `putchar` como se puede ver en la siguiente función:
 
@@ -276,16 +278,17 @@ void print_divided_ints(int *message_array,int divisor)
 }
 ```
 
-El segundo utiliza bit shifts y multiplicaciones como método de ofuscación. Un ejemplo sería `putchar((int)(char)((char)((ulong)((long)current_char * 0x55555556) >> 0x20) - (char)(current_char >> 0x1f)));`.
+El segundo utiliza bit shifts y multiplicaciones como método de ofuscación. Un ejemplo sería `putchar((int) (char) ((char) ((ulong) ((long) current_char * 0x55555556) >> 0x20) - (char) (current_char >> 0x1f)));`.
 
 Al ser una encriptación muy simple, se puede obtener el mensaje original con relativa facilidad. El proceso ha sido:
+
 1. Navegar a la dirección de memoria del array.
 2. Seleccionar todas las direcciones bajo su etiqueta.
 3. Cambiar la vista a int (4 bytes).
 4. Crear y utilizar un script de python para desencriptar la memoria de la manera apropiada.
 5. Renombrar la variable del array.
 
-## 5.6 Cadena "Opción:"
+## 5.6. Cadena "Opción:"
 
 El ultimo apartado de este paso consiste en entender la funcionalidad del programa más que el cómo evitar las comprobaciones.
 
