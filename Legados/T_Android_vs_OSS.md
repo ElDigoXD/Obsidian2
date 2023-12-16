@@ -55,3 +55,4 @@ https://en.wikipedia.org/wiki/Android_(operating_system)
 https://www.gnu.org/philosophy/android-and-users-freedom.en.html
 https://github.com/offa/android-foss
 https://en.wikipedia.org/wiki/Mobile_operating_system#Android
+https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses
