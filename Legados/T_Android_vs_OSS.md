@@ -60,9 +60,10 @@ Android se encuentra licenciado principalmente bajo dos licencias:
 Además de adherirse a las licencias, los contribuyentes han de firmar un acuerdo para su protección como contribuyentes y la protección del proyecto; sin cambiar los derechos sobre las contribuciones.
 
 # Google Mobile Services
-- API propietaria, firmas de google, alternativas (microG)
 
+La mayoría de dispositivos móviles que utilizan Android también incluyen otro software propietario de Google, conocido como Google Mobile Services (GMS). Esta colección de aplicaciones y APIs no está incluida en AOSP y requiere de que los fabricantes de dispositivos obtengan una licencia para incluirla. Algunas de sus aplicaciones son Google Search, Google Chrome, YouTube y Gmail. Y algunas de sus APIs son Google Play Services, Google Sing-in y Google Play Protect. 
 
+Esto hace que un dispositivo con AOSP y sin GMS es incapaz de realizar tareas básicas como realizar fotografías o llamar por teléfono ya que no incluye aplicaciones para esto y cada vez más, Google retira el soporte de las aplicaciones incluidas en AOSP. 
 
 #  Casos de Android sin Google
 - Huawei, Amazon fire, ROMs personalizadas, aplicaciones foss
@@ -77,6 +78,7 @@ https://en.wikipedia.org/wiki/Android_(operating_system)
 https://es.wikipedia.org/wiki/Software_libre
 https://en.wikipedia.org/wiki/Mobile_operating_system#Android
 https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses
+https://en.wikipedia.org/wiki/Google_Mobile_Services
 https://www.gnu.org/philosophy/android-and-users-freedom.en.html
 https://www.gnu.org/philosophy/free-sw.es.html#four-freedoms
 https://www.gnu.org/licenses/copyleft.en.html
