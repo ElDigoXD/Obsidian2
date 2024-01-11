@@ -87,6 +87,8 @@ Huawei anunció HarmonyOS, otro sistema operativo basado en AOSP con sus propios
 
 Gracias a que AOSP es de código abierto, existe una comunidad de desarrolladores que se dedica a realizar modificaciones y publicar versiones personalizadas (conocidas como ROMs) de Android. Algunas de las mas famosas son LineageOS (formalmente CyanogenMod), Resurrection Remix y Graphene OS, ninguna de las cuales incluye GMS incluido por defecto (por motivos legales y/o filosóficos).
 
+**buscar % de uso de roms**
+
 Se pueden encontrar aplicaciones FOSS a traves de [F-Droid](https://f-droid.org/en/), un catalogo de aplicaciones para Android o a través del repositorio [offa/android-foss](https://github.com/offa/android-foss)
 
 \pagebreak

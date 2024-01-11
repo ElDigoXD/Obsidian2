@@ -1,9 +1,9 @@
 ---
 version: "1"
 title: Wrapper
-subtitle: SL. Práctica 2
+subtitle: SL. Práctica 3
 author: Diego Sanz Fuertes | 825015
-date: 10 de Enero de 2024
+date: 11 de Enero de 2024
 toc: true
 toc-own-page: true
 lang: es-ES
@@ -27,11 +27,21 @@ output:
 
 # Resumen ejecutivo
 
+En esta práctica se ha desarrollado un wrapper sobre el emulador de terminales x3270 y se ha creado una interfaz para controlar una aplicación en un mainframe a través de éste.
+
+Para ello se ha hecho uso de Java y su librería de interfaces Swing. El wrapper se ha implementado lanzando x3270 como un proceso desde Java y interactuando con él a traves de la entrada/salida estándar. Se ha creado un método por cada comando necesario para realizar la interfaz.
+
+La interfaz es capaz de conectarse al mainframe, iniciar sesión, abrir el programa y realizar todas sus posibles acciones. Esto se ha conseguido mediante el uso del wrapper previamente implementado y lógica que se basa en el estado actual de la pantalla, como si existen más paginas en un listado. 
+
+Los problemas encontrados se deben a la latencia entre el cliente y el servidor y han podido ser mitigados insertando retardos donde era necesario.
 
 \pagebreak
 
 # Introducción
 
+El objetivo de la práctica consiste en la creación de un wrapper sobre el emulador de terminales x3270 para interactuar con un mainframe que utiliza el protocolo 3270. Una vez creado el wrapper se pide crear una interfaz sobre un programa ejecutado en el mainframe mediante el wrapper.
+
+El wrapper creado es sobre el emulador x3270. Se podría crear otra capa de abstracción y crear otro wrapper sobre el wrapper que incluya la posibilidad de añadir otros emuladores de otros protocolos. Se ha considerado que esto es innecesario para esta práctica y, si fuese necesario, sería sencillo de implementar en un futuro.
 
 # Herramientas utilizadas
 
@@ -169,16 +179,91 @@ try {
 }
 ```
 
+El botón de añadir tarea abre una ventana en la que se pueden introducir los valores de ésta y son validados antes de devolverlos a la anterior ventana. En el caso de que la clave esté duplicada, se volverá a mostrar la ventana para su modificación.
+
+```java
+// addTaskButton.addActionListener
+var addTaskDialog = new AddTaskDialog(null);  
+addTaskDialog.setLocationRelativeTo(this.mainPanel);  
+
+addTaskDialog.setVisible(true);  
+var task = addTaskDialog.getTask();  
+if (task != null) {  
+	try {  
+		w.stringEnterWait("a");  
+		w.stringEnterWait(String.valueOf(task.number()));  
+
+		while (!w.ascii().contains("TASK NAME (MAX 16 CAR):")) {  
+
+			w.enter();  
+			JOptionPane.showMessageDialog(this.mainPanel, 
+					   "TASK NUMBER REPEATED");  
+			addTaskDialog.setVisible(true);  
+			task = addTaskDialog.getTask();  
+
+			w.stringEnterWait(String.valueOf(task.number()));  
+		}  
+		w.stringEnterWait(task.name());  
+		w.stringEnterWait(task.description());  
+		w.stringEnterWait(task.date());  
+
+		w.enter();  
+		w.waitSeconds(0.3);  
+		updateTaskNumber();  
+
+	} catch (Exception ex) {  
+		JOptionPane.showMessageDialog(this.mainPanel, 
+				   "Error adding task");  
+	}    
+}
+```
+
+El botón de eliminar invoca una ventana modal que pide al usuario el id de la tarea a ser eliminada. Los botones de búsqueda y de listado son muy similares, ya que los datos se visualizan de la misma manera, una ventana modal y tienen en cuenta la paginación cuando existen muchas tareas, su única diferencia es que la de búsqueda requiere de un modal para introducir el criterio de búsqueda, necesario también para obtener el punto de inicio de la lista.
+
+```java
+// searchTaskButton.addActionListener
+try {  
+	w.stringEnterWait("t");  
+	String input = JOptionPane.showInputDialog(this.mainPanel,  
+			"Enter date in format dd mm yy");  
+	while (input.isEmpty()) {  
+		input = JOptionPane.showInputDialog(this.mainPanel,  
+				"Enter date in format dd mm yy");  
+	}  
+	w.stringEnterWait(input);  
+
+	var listOfTasks = parseListOfTasks(input);  
+
+	if (listOfTasks.isBlank())  
+		listOfTasks = "Tasks not found";  
+	JOptionPane.showMessageDialog(this.mainPanel, listOfTasks);  
+
+} catch (Exception ex) {  
+	JOptionPane.showMessageDialog(this.mainPanel, 
+	            "Error searching task");  
+}
+```
+
+Por último el botón de nuevo archivo, guardado y salida son una serie de comandos preestablecidos los cuales no varían. También se ha incluido un contador del numero de tareas, obtenido cada vez que se realiza una acción que lo pueda modificar.
 
 # Problemas encontrados
 
 Algunos de los problemas encontrados han sido los siguientes:
 
+- Al intentar iniciar sesión y otras acciones seguidas en el mainframe sin esperas para hacer la aplicación mas rápida, se obtenían resultados incorrectos y no deterministas, aun con el uso del comando `wait(output)`. La solución ha sido añadir 0.3 segundos de retardo cada vez que se realiza un comando `enter` o `tab` y se quiere realizar otro input.
+- El mainframe se quedaba bloqueado en el caso de cerrar la conexión sin salir del programa o, a veces, de la sesión del sistema operativo.
 
+\pagebreak
 
 # Conclusiones
+
+- Tras la realización de esta práctica se ha apreciado aun más los wrappers que hacen los programadores para utilizar librerías escritas en otros lenguajes como OpenSSL o SDL.
+- Resulta muy satisfactorio escribir un wrapper sobre una librería o comando de esta manera.
+- Se debería utilizar una librería existente en vez de una propia si es posible, en este caso existía otro wrapper para Java de x3270. No se ha utilizado porque va en contra del objetivo de la práctica
+- Es un paradigma curioso de programación, en vez de un modelo MVC, la vista es el modelo, esto trae posibles desincronizaciones del estado entre la vista y el controlador.
 
 \pagebreak
 
 # Referencias
 
+- x3270 [http://x3270.bgp.nu/](http://x3270.bgp.nu/)
