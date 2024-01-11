@@ -77,7 +77,7 @@ La mayoría de dispositivos móviles que utilizan Android también incluyen otro
 
 Esto hace que un dispositivo con AOSP y sin GMS es incapaz de realizar tareas básicas como realizar fotografías o llamar por teléfono ya que no incluye aplicaciones para esto y cada vez más, Google retira el soporte de las aplicaciones incluidas en AOSP. 
 
-#  Casos de Android sin Google
+#  Casos de Android sin GMS
 
 En el mercado se pueden encontrar dispositivos con AOSP sin los servicios de Google. El más famoso hasta que EE.UU. vetó a Huawei era Amazon, con sus tablets Fire que incluían aplicaciones y servicios de Amazon en vez de Google, y con Fire TV (dispositivos de streaming) también utilizando AOSP como base.
 
