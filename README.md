@@ -23,27 +23,8 @@ output:
     from: markdown
     listings: true
     citeproc: true
----
 
-# Índice
-- [Introducción, Motivación y Objetivos](#introducción-motivación-y-objetivos) 
-- [Estado del arte](#estado-del-arte)
-- [Presentación de la propuesta](#presentación-de-la-propuesta)
-- [Arquitectura propuesta](#arquitectura-propuesta)
-  - [Servidor](#servidor)
-  - [Cliente](#cliente)
-- [Arquitectura de contenidos](#arquitectura-de-contenidos)
-- [Ingeniería de requisitos](#ingeniería-de-requisitos)
-  - [Público objetivo](#público-objetivo)
-  - [Historias de usuario](#historias-de-usuario)
-  - [Iteraciones](#iteraciones)
-- [Detalles de la implementación](#detalles-de-la-implementación)
-- [Referencias](#referencias)
-- [Anexo: Instalación](#anexo-instalación)
-  - [Desarrollo](#versión-de-desarrollo)
-  - [Producción](#versión-de-producción)
-- [Anexo: Mockups](#anexo-mockups)
-- [Anexo: Historial](#anexo-historial)
+---
 
 # Introducción, Motivación y Objetivos 
 
@@ -218,7 +199,7 @@ Implementar seguimiento del cliente (cliente y nutricionista)
 - Implementaa página del usuario con información sobre su evolución
 - Permitir al usuario registrar su evolución
 
-### Iteración 5 (Revisable) 
+### Iteración 5
 
 Crear CRUD de los alimentos
 
@@ -274,6 +255,10 @@ En esta sección se detallará como se han implementado diferentes funcionalidad
 
 La interfaz web se basa en una plantilla licenciada bajo MIT creada por [Start Bootstrap](https://startbootstrap.com/template/modern-business) la cuál contiene varias páginas de ejemplo que han sido modificadas para adaptarse a las necesidades de este proyecto.
 
+## SQLite
+
+SQLite es una base de datos ligera, la cual se almacena en un fichero. Se ha escogido por su comodidad de desplilegue y desarrollo, permitiendo incluirla en el repositorio. Django ofrece un ORM el cuál abstrae la base de datos, haciendo su posterior sustitución por MariaDB o PostgreSQL, cuando se requiera de la potencia que estos sistemas gestores de bases de datos ofrecen, muy sencilla.
+
 ## Internacionalización y localización 
 
 Para llevar a cabo la internacionalización (o i18n) y localización (o l10n) se ha utilizado la funcionalidad ofrecida por el framework Django siguiendo la [documentación ofrecida](https://docs.djangoproject.com/en/5.0/topics/i18n/).
@@ -312,9 +297,11 @@ Los gráficos se han generado a través de la librería [Chart.js](https://chart
 
 ## API REST
 
-Para crear una API REST se ha creado la ruta estandar "/api/v1/" en la que se puede acceder al objeto "user" mediante get y, si existe, se reciben sus datos en formato JSON. Estas peticiones podrían contar con más seguridad mediante el uso de autenticación del cliente mediante tokens o contraseñas.
+Para crear una API REST se ha creado la ruta estandar "/api/v1/" en la que se pueden acceder a los objetos "user" y "food" mediante GET y, si existen, se reciben sus datos en formato JSON. Estas peticiones podrían contar con más seguridad mediante el uso de autenticación del cliente mediante tokens o contraseñas. El acceso a los objetos "food" permite filtrado, paginación y ordenación mediante parametros GET. Los objetos "food" se pueden modificar mediante POST.
 
-También existe una extensión para django centrada en realizar APIs REST llamada django-rest-framework pero no se ha considerado necesario su uso en esta aplicación web.
+La api se ha utilizado para la página que muestra una tabla con los alimentos.
+
+Existe una extensión para django centrada en realizar APIs REST llamada django-rest-framework pero no se ha considerado necesario su uso en esta aplicación web.
 
 
 # Conclusiones
@@ -336,6 +323,7 @@ Tras la dedicación de innumerables horas a este proyecto, se han llegado a las 
 - Plantilla por Start Bootstrap - https://startbootstrap.com/template/modern-business/
 - Chart.js - https://chartjs.org
 - Generador de personas - https://thispersondoesnotexist.com/
+- Bootstap Table - https://bootstrap-table.com/
 
 # Anexo: Instalación
 
@@ -672,6 +660,7 @@ Copyright c Diego Sanz - 2023   GitHub . Privacy . Terms . Contact
 - Crear modelo UserData
 - Implementar página de crear y modificar clientes
 - Actualizar página del perfil/id para modificar, eliminar y desactivar clientes
+- Desplegar iteración 3
 
 8/1/24
 
@@ -685,3 +674,29 @@ Copyright c Diego Sanz - 2023   GitHub . Privacy . Terms . Contact
   - Conclusiones
   - Donde encontrar la app
 - Implementar seguimiento de peso (modelo tracking)
+- Desplegar iteración 4
+
+12/1/24
+
+- Implementar link de volver atrás
+- Importar los alimentos en la BBDD (modelo food)
+- Añadir librería js bootstrap-table
+- Añadir paginación a la api rest de los alimentos
+- Añdir pagina alimentos
+- Desplegar iteración 5 (django admin para crud)
+
+14/1/24
+
+- Modificar estilos
+- Autocompletado (atributo autocomplete)
+- Traducción de la Iteracion 1
+
+15/1/24
+
+- Arreglar formulario de contacto
+- POST de api food
+- Apache ssl autofirma
+- Redactar:
+  - Paginación
+  - SQLite
+- Preparar la entrega
