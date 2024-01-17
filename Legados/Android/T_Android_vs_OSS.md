@@ -26,6 +26,12 @@ output:
 
 # Resumen ejecutivo
 
+En este trabajo se expone una breve historia y definición de Android, y una explicación sobre su arquitectura. También incluye una introducción al software libre y al código abierto desde el punto de vista de la Free Software Foundation y la Open Source Initiative respectivamente. Se describen Y comparan dos de las licencias libres más utilizadas, Apache y GPL. Estas dos licencias son utilizadas en Android, Apache para el userspace y GPL para el kernel.
+
+Por último se explica qué son los Google Mobile Services, qué relación tienen con Android y se enumeran distintos casos en los que se utiliza Android sin ellos.
+
+En las conclusiones se responde a la pregunta de si Android es un sistema operativo libre y de código abierto.
+
 \pagebreak
 
 
@@ -45,7 +51,7 @@ Android es un sistema operativo móvil basado en una versión modificada del ker
 
 La base de Android, Android Open Source Project (AOSP) es software libre y de código abierto (FOSS). La mayoría de los dispositivos utiliza una versión propietaria de Android desarrollada por Google que contiene software de código cerrado, como por ejemplo Google Mobile Services (GMS), que incluye, entre otros, la Google Play Store, Google Chrome y Google Play Services.
 
-![Pilaa de Android.](Android%20Stack.png){height=65%}
+![Pila de Android.](Android%20Stack.png){height=65%}
 
 ![Arquitectura de GKI (Generic Kernel Image).](Android%20Arquitectura%20GKI.png)
 
@@ -60,7 +66,7 @@ El concepto de software libre lo acuñó Richard Stallman, fundador de la Free S
 - Libertad 2: La libertad de distribuir copias del programa, con lo cual se puede ayudar a otros usuarios (distribución).
 - Libertad 3: La libertad de mejorar el programa y hacer públicas esas mejoras a los demás, de modo que toda la comunidad se beneficie (mejora).
 
-![Logo de Free Software Foundation y Open Source Initiative.](Android%20FSF%20OSI.webp)
+![Logo de Free Software Foundation y Open Source Initiative.](Android%20FSF%20OSI.png)
 
 La única diferencia entre los dos términos es el punto de vista: el software de código abierto se enfoca en las ventajas técnicas de este modelo y el software libre se centra en las libertades filosóficas que se les ofrecen a los usuarios. El término utilizado para referirse a los dos indistintamente es FOSS (Free and Open Source Software).
 
@@ -102,6 +108,10 @@ Se pueden encontrar aplicaciones FOSS a traves de [F-Droid](https://f-droid.org/
 \pagebreak
 
 # Conclusiones
+
+Se ha llegado a la conclusión de que Android no es un sistema operativo FOSS, ya que incluye librerías propietarias de Google. AOSP si que lo es, aunque algunos vendedores de hardware no publican sus fuentes, por lo que no se podría iniciar el SO. 
+
+Google ha conseguido un gran éxito con Android y parece que quiere controlarlo, eliminando funcionalidades del AOSP e incluyéndolas en GMS.
 
 \pagebreak
 
