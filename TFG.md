@@ -12,7 +12,11 @@ La geometría de la escena se definirá mediante primitivas definidas matemátic
 
 Utilizando la primitiva del triángulo se pueden representar mallas, definidas por una lista de triángulos. El soporte de mallas resulta muy útil ya que la mayoría de modelos 3D se encuentra en este formato. Para la importación de las mallas se ha utilizado la librería "tinyobjloader", la cual permite cargar archivos OBJ y extraer los vertices de sus triángulos.
 
+<< Imagen de esfera c r, y triangulo a b c >>
+
 #### Textura
+
+
 
 #### Iluminación
 
