@@ -30,7 +30,7 @@ Una vez definida la geometría de la escena, es necesario aplicar texturas a las
 3. Material metálico: 
 4. Material dieléctrico:
 
-<< otra forma de definir los materiales podría ser basado en los parámetros de Disney [link](https://media.disneyanimation.com/uploads/production/publication_asset/48/asset/s2012_pbs_disney_brdf_notes_v3.pdf)
+<< otra forma de definir los materiales podría ser basado en los parámetros de Disney [link](https://media.disneyanimation.com/uploads/production/publication_asset/48/asset/s2012_pbs_disney_brdf_notes_v3.pdf) >>
 << imagen de una escena comparativa con esferas de todos los materiales >>
 
 #### Iluminación
