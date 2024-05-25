@@ -1,3 +1,10 @@
+- [ ] SIMD 
+- [ ] Otras formas de representar triángulos
+- [ ] 
+
+
+
+
 ## 3. Proceso de síntesis de escenas virtuales en 3D mediante hologramas digitales
 
 En este apartado se detallará el proceso de síntesis, dividido en tres secciones:
