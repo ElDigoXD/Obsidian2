@@ -23,7 +23,15 @@ Utilizando la primitiva del triángulo se pueden representar mallas, definidas p
 
 #### Textura
 
+Una vez definida la geometría de la escena, es necesario aplicar texturas a las primitivas. Las texturas que se han utilizado no siguen el significado tradicional de imágenes bidimensionales mapeadas sobre la superficie de la geometría, si no que se emplean distintos tipos de materiales, detallados a continuación:
 
+1. Material difuso (lambertiano): Este material dispersa la luz siguiendo una distribución independiente al ángulo de incidencia y proporcional al coseno del ángulo formado entre la normal de la superficie y la dirección de dispersión. Esta distribución viene dada por la ley del coseno de Lambert. El color y la intensidad de la luz se ven modificados por el color (o albedo) del material.
+2. Material normal: Este material dispersa la luz de la misma manera que el material difuso con la diferencia de que el color de la luz lo establece la dirección de la normal.
+3. Material metálico: 
+4. Material dieléctrico:
+
+<< otra forma de definir los materiales podría ser basado en los parámetros de Disney [link](https://media.disneyanimation.com/uploads/production/publication_asset/48/asset/s2012_pbs_disney_brdf_notes_v3.pdf)
+<< imagen de una escena comparativa con esferas de todos los materiales >>
 
 #### Iluminación
 
