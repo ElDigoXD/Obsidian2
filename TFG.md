@@ -69,8 +69,8 @@ La computación distribuida...
 
 
 
-
-
+---
+## Notas
 ### Precios HW
 Obtenidos a 23/05/2024 
 * 9900K 
