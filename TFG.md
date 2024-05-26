@@ -37,6 +37,8 @@ La ultima sección de la definición de la escena virtual es la iluminación. La
 El cielo ilumina de manera uniforme la escena mientras que las fuentes de luz puntuales siguen el modelo de reflexión de Blinn-Phong, que describe la forma en la que una superficie refleja la luz como una combinación de la iluminación difusa y la iluminación especular. No se incluye el término ambiental del modelo ya que se utiliza el cielo.
 
 > (NOTA: ¿como afecta esto a los metales? Un metal rojo no debería tener otros colores porque los "atenúa", en cambio refleja el verde de debajo. En la escena el cielo reflejado debería ser negro. Debería almacenar por separado la difusa y la especular y multiplicar como la del cielo)
+> 
+> Otra cosa relacionada con la iluminación, no se utiliza la ley de la inversa del cuadrado en las fuentes de luz puntuales. Implementarlo no es una prioridad pero, ¿estaría bien comentarlo en el trabajo?
 
 > Imagen de la escena de iluminación con los tres componentes y la suma de ellos
 
