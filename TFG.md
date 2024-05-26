@@ -7,7 +7,7 @@ En este apartado se detallará el proceso de síntesis, dividido en tres seccion
 
 El primer paso para la síntesis de escenas virtuales consiste en definir la escena que se desea producir. La escena contará con tres tipos de componentes:
 
-#### 3.1. Geometría
+#### 3.1.1. Geometría
 
 La geometría de la escena se definirá mediante primitivas definidas matemáticamente. Estas primitivas son: triángulos, definidos mediante la posición espacial de sus vértices; y esferas, definidas mediante su radio y la posición espacial de su centro. 
 
@@ -15,7 +15,7 @@ Utilizando la primitiva del triángulo se pueden representar mallas, definidas p
 
 > Imagen de esfera {c r}, y triangulo {a b c}
 
-#### 3.2. Textura
+#### 3.1.2. Textura
 
 Una vez definida la geometría de la escena, es necesario aplicar texturas a las primitivas. Las texturas que se han utilizado no siguen el significado tradicional de imágenes bidimensionales mapeadas sobre la superficie de la geometría, si no que se emplean distintos tipos de materiales, detallados a continuación:
 
@@ -28,11 +28,15 @@ También existen otras formas mas completas de definir materiales como las descr
 
 > Imagen de una escena comparativa con esferas de todos los materiales
 
-#### 3.3. Iluminación
+#### 3.1.3. Iluminación
 
+La ultima sección de la definición de la escena virtual es la iluminación. La iluminación que se utiliza se puede dividir en dos tipos de fuente: el cielo y fuentes puntuales de luz.
 
-cielo,
-para puntos de luz: blinn-phong model no ambiente (cielo)
+El cielo ilumina de manera uniforme la escena, con la opción de que el color sea un gradiente dependiendo de el ángulo de incidencia. 
+
+Las fuentes de luz puntuales siguen el modelo de reflexión de Blinn-Phong, que describe la forma en la que una superficie refleja la luz como una combinación de la  
+
+> cielo, para puntos de luz: blinn-phong model no ambiente (cielo)
 
 
 ## 4. Técnicas de paralelización
@@ -41,7 +45,7 @@ En este apartado se definirán los conceptos de computación paralela, computaci
 
 La computación paralela es un tipo de computación en la que muchos cálculos o procesos se llevan a cabo simultáneamente. Existen varias técnicas de paralelización dentro de la computación paralela entre las que se encuentra la que se utilizará en este trabajo, el paralelismo de datos. Esta técnica consiste en dividir los datos entre distintos núcleos de procesamiento, los cuales operan sobre los datos en paralelo. Por ejemplo, se podría dividir una imagen en píxeles, operar sobre ellos y volver a unirlos para obtener otra imagen. 
 
-La computación distribuida
+La computación distribuida...
 
 
 
