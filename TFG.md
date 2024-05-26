@@ -1,27 +1,21 @@
-- [ ] SIMD 
-- [ ] Otras formas de representar triángulos
-- [ ] 
-
-
-
 
 ## 3. Proceso de síntesis de escenas virtuales en 3D mediante hologramas digitales
 
 En este apartado se detallará el proceso de síntesis, dividido en tres secciones:
 
-### Gráficos: escena virtual
+### 3.1. Gráficos: escena virtual
 
 El primer paso para la síntesis de escenas virtuales consiste en definir la escena que se desea producir. La escena contará con tres tipos de componentes:
 
-#### Geometría
+#### 3.1. Geometría
 
 La geometría de la escena se definirá mediante primitivas definidas matemáticamente. Estas primitivas son: triángulos, definidos mediante la posición espacial de sus vértices; y esferas, definidas mediante su radio y la posición espacial de su centro. 
 
 Utilizando la primitiva del triángulo se pueden representar mallas, definidas por una lista de triángulos. El soporte de mallas resulta muy útil ya que la mayoría de modelos 3D se encuentra en este formato. Para la importación de las mallas se ha utilizado la librería "tinyobjloader", la cual permite cargar archivos OBJ y extraer los vertices de sus triángulos.
 
-<< Imagen de esfera c r, y triangulo a b c >>
+> Imagen de esfera {c r}, y triangulo {a b c}
 
-#### Textura
+#### 3.2. Textura
 
 Una vez definida la geometría de la escena, es necesario aplicar texturas a las primitivas. Las texturas que se han utilizado no siguen el significado tradicional de imágenes bidimensionales mapeadas sobre la superficie de la geometría, si no que se emplean distintos tipos de materiales, detallados a continuación:
 
@@ -34,7 +28,8 @@ También existen otras formas mas completas de definir materiales como las descr
 
 > Imagen de una escena comparativa con esferas de todos los materiales
 
-#### Iluminación
+#### 3.3. Iluminación
+
 
 cielo,
 para puntos de luz: blinn-phong model no ambiente (cielo)
