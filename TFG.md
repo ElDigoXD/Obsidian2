@@ -3,6 +3,8 @@
 
 En este apartado se detallará el proceso de síntesis, dividido en tres secciones:
 
+> No me convencen los nombres de las secciones 3.1 y 3.2. Quizás "Definición de la escena virtual" y "Generación de hologramas \[Digitales]". 
+
 ### 3.1. Gráficos: escena virtual
 
 El primer paso para la síntesis de escenas virtuales consiste en definir la escena que se desea producir. La escena contará con tres tipos de componentes:
@@ -32,11 +34,20 @@ También existen otras formas mas completas de definir materiales como las descr
 
 La ultima sección de la definición de la escena virtual es la iluminación. La iluminación que se utiliza se puede dividir en dos tipos de fuente: el cielo y fuentes puntuales de luz.
 
-El cielo ilumina de manera uniforme la escena, con la opción de que el color sea un gradiente dependiendo de el ángulo de incidencia. 
+El cielo ilumina de manera uniforme la escena mientras que las fuentes de luz puntuales siguen el modelo de reflexión de Blinn-Phong, que describe la forma en la que una superficie refleja la luz como una combinación de la iluminación difusa y la iluminación especular. No se incluye el término ambiental del modelo ya que se utiliza el cielo.
 
-Las fuentes de luz puntuales siguen el modelo de reflexión de Blinn-Phong, que describe la forma en la que una superficie refleja la luz como una combinación de la  
+> (NOTA: ¿como afecta esto a los metales? Un metal rojo no debería tener otros colores porque los "atenúa", en cambio refleja el verde de debajo. En la escena el cielo reflejado debería ser negro. Debería almacenar por separado la difusa y la especular y multiplicar como la del cielo)
 
-> cielo, para puntos de luz: blinn-phong model no ambiente (cielo)
+> Imagen de la escena de iluminación con los tres componentes y la suma de ellos
+
+### 3.2. Holograma generado por computador (CGH)
+
+#### 3.2.1. Trazado de rayos
+
+#### 3.2.1. Calculo de amplitud y fase: aproximación escalar de la propagación de ondas electromagnéticas
+
+> El nombre de la sección suena muy complicado
+
 
 
 ## 4. Técnicas de paralelización
