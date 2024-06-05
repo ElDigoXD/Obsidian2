@@ -99,6 +99,10 @@ La computación paralela es un tipo de computación en la que muchos cálculos o
 
 ## 8. Bibliografía
 
+- https://pbr-book.org/
+- https://raytracing.github.io/
+- https://developer.nvidia.com/blog/accelerated-ray-tracing-cuda/
+
 ## 9. Anexos
 
 ### 9.1. Licencias
