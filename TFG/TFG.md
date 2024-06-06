@@ -3,7 +3,6 @@
 
 > En este apartado se establecerá el contexto y la motivación del trabajo, explicando la importancia de la síntesis de hologramas digitales generados por computador (CGHs) y el papel del trazado de rayos en el proceso. También se definirán los objetivos del TFG, incluyendo la creación de escenas sintéticas, la creación de un trazador de rayos clásico, su adaptación para generar hologramas y la propagación del frente de ondas para validar los resultados.
 
-> ¿Introducir el concepto de literate programming para introducir fragmentos de código?
 ## 2. Estado del arte
 
 ## 3. Proceso de síntesis de escenas virtuales en 3D mediante hologramas digitales
@@ -138,6 +137,7 @@ La computación paralela es un tipo de computación en la que muchos cálculos o
 - https://pbr-book.org/
 - https://raytracing.github.io/
 - https://developer.nvidia.com/blog/accelerated-ray-tracing-cuda/
+- https://www.youtube.com/watch?v=KkOkx0FiHDA
 
 ---
 
