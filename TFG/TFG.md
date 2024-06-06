@@ -3,6 +3,7 @@
 
 > En este apartado se establecerá el contexto y la motivación del trabajo, explicando la importancia de la síntesis de hologramas digitales generados por computador (CGHs) y el papel del trazado de rayos en el proceso. También se definirán los objetivos del TFG, incluyendo la creación de escenas sintéticas, la creación de un trazador de rayos clásico, su adaptación para generar hologramas y la propagación del frente de ondas para validar los resultados.
 
+> ¿Introducir el concepto de literate programming para introducir fragmentos de código?
 ## 2. Estado del arte
 
 ## 3. Proceso de síntesis de escenas virtuales en 3D mediante hologramas digitales
@@ -46,6 +47,41 @@ El cielo ilumina de manera uniforme la escena mientras que las fuentes de luz pu
 #### 3.2.1. Trazado de rayos
 
 > En este apartado se detallará el algoritmo de trazado de rayos utilizado para generar imágenes, explicando cómo se simulan los rayos de luz desde la fuente hasta el detector y las principales diferencias con la realidad. (cámara, generación de rayos, muestreo, intersección, interacción con materiales, número máximo de rebotes, iluminación) (Referencias a los libros) (Imágenes de los resultados, la del final del primer libro y alguna malla)
+
+El trazado de rayos (o ray tracing, en inglés) es una técnica para simular el comportamiento de la luz para sintetizar escenas virtuales. En este trabajo concretamente se utiliza el algoritmo de trazado de caminos (o path tracing, en inglés), el cual simula más efectos que el trazado de rayos convencional gracias al uso de simulaciones de Monte Carlo.
+
+El trazado de rayos se considera una técnica computacionalmente costosa, por lo que es utilizada principalmente para crear imágenes generadas por computador (CGI) estáticas y efectos visuales.
+
+> Quizás hablar de BDRF (Bidirectional reflectance distribution function)
+
+Según el libro[ Physically Based Rendering: From Theory To Implementation](https://pbr-book.org/4ed/contents) un trazador de rayos ha de simular al menos los siguientes objetos y fenómenos:
+
++ Camaras: El modelo de una camara determina cómo y desde dónde la escena es observada, incluyendo como una imagen de la escena es recogida por un sensor.
++ Intersecciones rayo-objeto: Es necesario conocer precisamente cuándo y dónde un rayo intersecta un objeto geométrico, además de determinar algunas propiedades del objeto en el punto de intersección.
++ Fuentes de luz: El trazador de rayos ha de modelar la distribución de la luz en la escena.
++ Visibilidad: Se debe poder conocer si una luz determinada deposita energía en un punto de una superficie.
++ Dispersion de la luz en superficies: Cada objeto ha de proveer información sobre como la luz interactúa con la superficie del objeto.
++ Transporte indirecto de luz: La luz puede llegar a la superficie después de rebotar o atravesar otras superficies.
++ Propagación de rayos: Se necesita conocer el comportamiento de la luz mientras atraviesa un espacio, siendo constante en el vacío.
+
+A continuación se detallará el el funcionamiento de la implementación realizada en este trabajo.
+
+##### Implementación
+
+El algoritmo se ha implementado en el lenguaje de programación C++ debido a su alto rendimiento, control sobre conceptos de bajo nivel (como gestion de la memoria) y compatibilidad con CUDA para acelerar mediante GPUs. La implementación inicial se ha basado en el libro [Ray Tracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html) y se han añadido más funcionalidades no incluidas en el libro.
+
+El primer componente del trazador de rayos es la cámara, encargada de _lanzar_ los rayos ya que la propagación desde la fuente de luz hasta la cámara es equivalente a la propagación desde la cámara hasta la fuente de luz. La camara se basa en una cámara estenopeica (o camara oscura) sin lente aunque también es capaz de simular una lente para obtener el efecto de profundidad de campo.
+
+> Imagen de cámara similar a: [pbr figure 1.2 y figure 1.3](https://pbr-book.org/4ed/Introduction/Photorealistic_Rendering_and_the_Ray-Tracing_Algorithm#CamerasandFilm) y/o lente de RTIOW
+
+
+La camara se define mediante su centro y su viewport. El centro de la camara es el punto (o el centro del disco en el caso de simular una lente) desde el cuál se originan los rayos. El viewport es un rectángulo bidimensional discretizado en píxeles utilizado para proyectar la escena. Cada pixel del viewport se corresponde con el de la imagen de salida por lo que se podría hacer un símil con el sensor de la cámara. Cada píxel indica la dirección de un rayo y una vez trazado el rayo se almacena el color resultante en la imagen de salida. Se puede obtener mayor calidad perceptual al elegir un punto aleatorio dentro del pixel en vez de su centro y se puede reducir el aliasing y aumentar la calidad al mediar el resultado de varias muestras del pixel.
+
+> Imagen centro-viewport con pixeles (similar a figura 3 RTIOW)
+
+
+
+
 
 #### 3.2.2. Calculo de amplitud y fase: aproximación escalar de la propagación de ondas electromagnéticas
 
@@ -106,6 +142,7 @@ La computación paralela es un tipo de computación en la que muchos cálculos o
 ---
 
 - https://en.wikipedia.org/wiki/General-purpose_computing_on_graphics_processing_units
+- https://en.wikipedia.org/wiki/Ray_tracing_(graphics)
 
 ## 9. Anexos
 
