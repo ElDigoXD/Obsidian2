@@ -41,6 +41,7 @@ El cielo ilumina de manera uniforme la escena mientras que las fuentes de luz pu
 
 > Imagen de la escena de iluminación con los tres componentes y la suma de ellos
 
+
 ### 3.2. Generación de hologramas digitales (DH)
 
 #### 3.2.1. Trazado de rayos
@@ -78,9 +79,13 @@ La camara se define mediante su centro y su viewport. El centro de la camara es 
 
 > Imagen centro-viewport con pixeles (similar a figura 3 RTIOW)
 
+Una vez lanzado el rayo se comprueba si intersecta con algún objeto de la escena iterando sobre ellos y se selecciona el objeto intersectado más cercano. De la intersección se obtiene el punto, la distancia respecto al origen del rayo, la normal de la superficie y el material del objeto. Con esta información, para la iluminación ambiente, se puede calcular la atenuación y la dirección del rayo dispersado dependiendo del material. Este proceso se repite hasta que el rayo dispersado no intersecta ningún objeto (o "escapa") y se atenúa con el color del cielo o, si alcanza el numero máximo de rebotes definido por el trazador de rayos, la atenuación sería total. Y para la iluminación puntual, siguiendo la misma ruta del rayo de la iluminación ambiente, se comprueba si el punto es visible para la fuente de luz trazando un rayo nuevo y, si lo es, se calcula la iluminación especular y la iluminación difusa, esta última en el caso de que el material sea difuso. 
 
+> Referencia a la imagen de la sección de iluminación.
 
+> Diagrama con la iluminación especular, lambert, metal y dieléctrico, similar a Wikipedia y RTIOW.
 
+> Imagen del final del libro 1 como demostración del trazador.
 
 #### 3.2.2. Calculo de amplitud y fase: aproximación escalar de la propagación de ondas electromagnéticas
 
@@ -88,13 +93,29 @@ La camara se define mediante su centro y su viewport. El centro de la camara es 
 
 > El nombre de la sección suena muy complicado
 
+Una vez implementado un trazador de rayos para la generación de imágenes, se ha modificado para generar hologramas. Las principales modificaciones realizadas han sido el proceso de lanzar rayos y el cambio del calculo del color del rayo a la amplitud y fase.
+
+Para obtener la amplitud y la fase de cada pixel \[del SLM\] se ha de calcular respecto a cada punto a muestrear, siendo los mismos puntos para cada pixel por razones relacionadas con la coherencia. Para determinar estos puntos se ha utilizado la técnica de la nube de puntos, según la cual se crea una lista de puntos en las superficies de los objetos.
+
+> Mencionar cálculos
+
+> Listar limitaciones respecto al CGI (dieléctricos, triángulos?, iluminación ambiental), preguntar por "po distance" 
+
 ### 3.3 Reconstrucción de la escena
 
 > En este apartado se explicará brevemente el proceso de propagación de ondas electromagnéticas entre dos planos mediante convolución y el uso de las transformadas de Fourier. (Referencia al estudio) (Imágenes de los resultados a diferentes distancias)
 
 > Quizás introducir el setup del laboratorio.
 
+Se han utilizado dos procesos para la reconstrucción de la escena una vez obtenido el holograma: simulación mediante la propagación de ondas electromagnéticas entre dos planos según el método de espectro angular (o angular spectrum method of plane waves, en inglés) mediante convolución en el dominio de la frecuencia y propagación en el laboratorio \[gracias a un SLM y un laser\]. 
 
+La simulación se ha llevado a cabo utilizando Python como lenguaje de programación junto a la librería de computo científico NumPy.
+
+La propagación en el laboratorio se ha realizado...
+
+> Referencia al estudio con el kernel
+
+> Imágenes con propagaciones a distintas distancias y comparativa entre simulación y realidad.
 
 ## 4. Técnicas de paralelización
 
@@ -143,6 +164,7 @@ La computación paralela es un tipo de computación en la que muchos cálculos o
 
 - https://en.wikipedia.org/wiki/General-purpose_computing_on_graphics_processing_units
 - https://en.wikipedia.org/wiki/Ray_tracing_(graphics)
+- https://en.wikipedia.org/wiki/Angular_spectrum_method
 
 ## 9. Anexos
 
