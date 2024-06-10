@@ -119,19 +119,26 @@ La propagación en el laboratorio se ha realizado...
 
 ## 4. Técnicas de paralelización
 
-En este apartado se definirán los conceptos de computación paralela, computación distribuida y computación concurrente.
-
-La computación paralela es un tipo de computación en la que muchos cálculos o procesos se llevan a cabo simultáneamente. Existen varias técnicas de paralelización dentro de la computación paralela entre las que se encuentra la que se utilizará en este trabajo, el paralelismo de datos. Esta técnica consiste en dividir los datos entre distintos núcleos de procesamiento, los cuales operan sobre los datos en paralelo. Por ejemplo, se podría dividir una imagen en píxeles, operar sobre ellos y volver a unirlos para obtener otra imagen. 
-
-> Recortar contenido no relevante
+La computación paralela es un tipo de computación en la que muchos cálculos o procesos se llevan a cabo simultáneamente. Existen varias técnicas de paralelización dentro de la computación paralela entre las que se encuentra la que se utilizará en este trabajo, el paralelismo de datos. Esta técnica consiste en dividir los datos entre distintos núcleos de procesamiento, los cuales operan sobre los datos en paralelo. Por ejemplo, se podría dividir una imagen en píxeles, y operar a nivel de pixel.
 
 ### 4.1 CPU
 
 > En este apartado explicará el modelo de ejecución de las CPUs y de cómo aprovechar los diferentes núcleos mediante el uso de hilos (threads) y grupos de hilos (threadpools). (Comparación entre ambos en el caso de trazado de rayos tradicional y CGH) (Hablar de SIMD (Single Instruction Multiple Data) en algún momento o que el compilador optimiza.
 
+Las CPUs actuales cuentan con multiples núcleos, lo que permite la ejecución paralela de múltiples hilos. Cada núcleo puede ejecutar una serie de instrucciones de manera independiente, permitiendo la realización de tareas en paralelo.
+
+Para aprovechar los diferentes núcleos de la CPU es necesario dividir el trabajo para diferentes hilos (o threads, en inglés). En el caso de un trazador de rayos, el método mas sencillo de distribuir el trabajo es dividiendo la imagen en píxeles y asignando a cada hilo un rango de píxeles sobre los que operar. Este método cuenta con la limitación de que puede darse el caso de que un hilo acabe antes que otro, limitando el aumento de velocidad al hilo más lento. 
+
+Para solucionar este problema se puede introducir el uso de un grupo de hilos (o thread pool, en inglés), al cuál se le puede asignar una serie de tareas que los hilos que lo forman ejecutan. Al dividir el trabajo en más tareas que hilos, se soluciona la limitación anterior. Se ha de tener en cuenta que la gestión de los hilos y las tareas tiene un coste computacional.
+
+En el trazador de rayos implementado se ha dividido la imagen en líneas de píxeles y se ha optado por el uso de un grupo de hilos mediante la librería [BS::thread_pool](https://github.com/bshoshany/thread-pool). La elección se debe principalmente a que el primer hilo suele terminar mucho antes que el último ya que en la mayoría de las escenas no se incluyen objetos en la parte superior. Esto no ocurre en el caso del trazador de rayos modificado para generar hologramas, ya que cada pixel lanza un rayo a cada punto y los hilos terminan simultáneamente. Por este motivo y por el coste extra del grupo de hilos, se ha optado por el uso de hilos.
+
+> Considerar si mencionar OpenMP o eliminar la dependencia del proyecto.
+ 
+
 ### 4.2 GPU
 
-> En este apartado se explicará el modelo de ejecución de las GPUs junto con las distintas formas de comunicarse con la gpu (shaders, openCL, CUDA, otros lenguajes), centrándose en la utilización de CUDA y sus limitaciones. (diferencia código y memoria host/device, limitación a tarjetas Nvidia, cálculos fp64 vs fp32) (Referencia a tabla de arquitecturas CUDA)
+> En este apartado se explicará el modelo de ejecución de las GPUs junto con las distintas formas de comunicarse con la gpu (shaders, openCL, CUDA, otros lenguajes), centrándose en la utilización de CUDA y sus limitaciones. (diferencia código y memoria host/device, limitación a tarjetas Nvidia) (Referencia a tabla de arquitecturas CUDA)
 
 ## 5. Resultados
 
