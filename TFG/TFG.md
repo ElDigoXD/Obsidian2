@@ -131,7 +131,7 @@ Para aprovechar los diferentes núcleos de la CPU es necesario dividir el trabaj
 
 Para solucionar este problema se puede introducir el uso de un grupo de hilos (o thread pool, en inglés), al cuál se le puede asignar una serie de tareas que los hilos que lo forman ejecutan. Al dividir el trabajo en más tareas que hilos, se soluciona la limitación anterior. Se ha de tener en cuenta que la gestión de los hilos y las tareas tiene un coste computacional.
 
-En el trazador de rayos implementado se ha dividido la imagen en líneas de píxeles y se ha optado por el uso de un grupo de hilos mediante la librería [BS::thread_pool](https://github.com/bshoshany/thread-pool). La elección se debe principalmente a que el primer hilo suele terminar mucho antes que el último ya que en la mayoría de las escenas no se incluyen objetos en la parte superior. Esto no ocurre en el caso del trazador de rayos modificado para generar hologramas, ya que cada pixel lanza un rayo a cada punto y los hilos terminan simultáneamente. Por este motivo y por el coste extra del grupo de hilos, se ha optado por el uso de hilos.
+En el trazador de rayos implementado se ha dividido la imagen en líneas de píxeles y se ha optado por el uso de un grupo de hilos mediante la librería [BS::thread_pool](https://github.com/bshoshany/thread-pool). La elección se debe principalmente a que el primer hilo suele terminar mucho antes que el último ya que en la mayoría de las escenas no se incluyen objetos en la parte superior. Esto no ocurre en el caso del trazador de rayos modificado para generar hologramas, ya que cada pixel lanza un rayo a cada punto y los hilos terminan con menor varianza. Por este motivo y por el coste extra del grupo de hilos, se ha optado por el uso de hilos en la generación de hologramas.
 
 > Considerar si mencionar OpenMP o eliminar la dependencia del proyecto.
  
@@ -139,6 +139,8 @@ En el trazador de rayos implementado se ha dividido la imagen en líneas de píx
 ### 4.2 GPU
 
 > En este apartado se explicará el modelo de ejecución de las GPUs junto con las distintas formas de comunicarse con la GPU (shaders, OpenCL, CUDA, otros lenguajes), centrándose en la utilización de CUDA y sus limitaciones. (diferencia código y memoria host/device, limitación a tarjetas Nvidia) (Referencia a tabla de arquitecturas CUDA) (mencionar numero de registros fp32 y fp64) (SIMD masivo)
+
+
 
 ## 5. Resultados
 
