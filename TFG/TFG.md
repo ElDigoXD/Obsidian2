@@ -11,8 +11,11 @@ En este apartado se detallará el proceso de síntesis, dividido en tres seccion
 
 ### 3.1. Definición de la escena virtual
 
-El primer paso para la síntesis de escenas virtuales consiste en definir la escena que se desea producir. La escena contará con tres tipos de componentes:
+El primer paso para la síntesis de escenas virtuales consiste en definir la escena que se desea producir. Veamos el siguiente ejemplo:
 
+> Imagen de ejemplo
+
+> Hablar de la interfaz
 #### 3.1.1. Geometría
 
 La geometría de la escena se definirá mediante primitivas definidas matemáticamente. Estas primitivas son: triángulos, definidos mediante la posición espacial de sus vértices; y esferas, definidas mediante su radio y la posición espacial de su centro. 
