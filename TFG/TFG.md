@@ -138,7 +138,7 @@ En el trazador de rayos implementado se ha dividido la imagen en líneas de píx
 
 ### 4.2 GPU
 
-> En este apartado se explicará el modelo de ejecución de las GPUs junto con las distintas formas de comunicarse con la gpu (shaders, openCL, CUDA, otros lenguajes), centrándose en la utilización de CUDA y sus limitaciones. (diferencia código y memoria host/device, limitación a tarjetas Nvidia) (Referencia a tabla de arquitecturas CUDA)
+> En este apartado se explicará el modelo de ejecución de las GPUs junto con las distintas formas de comunicarse con la GPU (shaders, OpenCL, CUDA, otros lenguajes), centrándose en la utilización de CUDA y sus limitaciones. (diferencia código y memoria host/device, limitación a tarjetas Nvidia) (Referencia a tabla de arquitecturas CUDA) (mencionar numero de registros fp32 y fp64) (SIMD masivo)
 
 ## 5. Resultados
 
