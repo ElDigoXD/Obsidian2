@@ -95,7 +95,7 @@ Una vez lanzado el rayo se comprueba si intersecta con algún objeto de la escen
 
 Una vez implementado un trazador de rayos para la generación de imágenes, se ha modificado para generar hologramas. Las principales modificaciones realizadas han sido el proceso de lanzar rayos y el cambio del calculo del color del rayo a la amplitud y fase.
 
-Para obtener la amplitud y la fase de cada pixel \[del SLM\] se ha de calcular respecto a cada punto a muestrear, siendo los mismos puntos para cada pixel por razones relacionadas con la coherencia. Para determinar estos puntos se ha utilizado la técnica de la nube de puntos, según la cual se crea una lista de puntos en las superficies de los objetos.
+Para obtener la amplitud y la fase de cada pixel [del SLM] se ha de calcular respecto a cada punto a muestrear, siendo los mismos puntos para cada pixel por razones relacionadas con la coherencia. Para determinar estos puntos se ha utilizado la técnica de la nube de puntos, según la cual se crea una lista de puntos en las superficies de los objetos.
 
 > Mencionar cálculos
 
@@ -107,7 +107,7 @@ Para obtener la amplitud y la fase de cada pixel \[del SLM\] se ha de calcular r
 
 > Quizás introducir el setup del laboratorio.
 
-Se han utilizado dos procesos para la reconstrucción de la escena una vez obtenido el holograma: simulación mediante la propagación de ondas electromagnéticas entre dos planos según el método de espectro angular (o angular spectrum method of plane waves, en inglés) mediante convolución en el dominio de la frecuencia y propagación en el laboratorio \[gracias a un SLM y un laser\]. 
+Se han utilizado dos procesos para la reconstrucción de la escena una vez obtenido el holograma: simulación mediante la propagación de ondas electromagnéticas entre dos planos según el método de espectro angular (o angular spectrum method of plane waves, en inglés) mediante convolución en el dominio de la frecuencia y propagación en el laboratorio [gracias a un SLM y un laser]. 
 
 La simulación se ha llevado a cabo utilizando Python como lenguaje de programación junto a la librería de computo científico NumPy.
 
