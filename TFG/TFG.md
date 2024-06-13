@@ -33,7 +33,6 @@ Una vez definida la geometría de la escena, es necesario aplicar texturas a las
 |                                        ![](Resources/02_crop.png)                                         |
 |:---------------------------------------------------------------------------------------------------------:|
 | *Figura X: Render de tres esferas de diferentes colores sobre una superficie blanca. Materiales difusos.* |
-|                                                                                                           |
 
 2. Material metálico: Al contrario que el material difuso, el material metálico refleja la luz en el mismo ángulo en dirección opuesta respecto al ángulo de incidencia. Este efecto produce un reflejo de la misma manera que un espejo. Este material también cuenta con un parámetro que controla la borrosidad (o fuzziness, en inglés) del reflejo. En la figura X se puede observar el efecto espejo del material junto a el parámetro de borrosidad.
 
@@ -52,7 +51,6 @@ También existen otras formas mas completas de definir materiales como las descr
 |                                                                      ![](Resources/01_materials.png)                                                                       |
 |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | *Figura X: Render demostrando los distintos materiales. Basado en el render de la figura X-1 (superficie y esfera azul metálicas con borrosidad 0 y 0.3 respectivamente).* |
-|                                                                                                                                                                            |
 
 #### 3.1.3. Iluminación
 
