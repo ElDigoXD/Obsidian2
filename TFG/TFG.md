@@ -30,16 +30,29 @@ Una vez definida la geometría de la escena, es necesario aplicar texturas a las
 
 1. Material difuso (lambertiano): Este material dispersa la luz siguiendo una distribución independiente al ángulo de incidencia y proporcional al coseno del ángulo formado entre la normal de la superficie y la dirección de dispersión. Esta distribución viene dada por la ley del coseno de Lambert. El color y la intensidad de la luz se ven modificados por el color (o albedo) del material. Este material podría describirse como mate. En la figura X se puede apreciar el comportamiento del material difuso. 
 
-| ![Figura X: Render de tres esferas de diferentes colores sobre una superficie blanca. Materiales difusos.](Resources/02_crop.png) |
-|:--:|
+|                                        ![](Resources/02_crop.png)                                         |
+|:---------------------------------------------------------------------------------------------------------:|
 | *Figura X: Render de tres esferas de diferentes colores sobre una superficie blanca. Materiales difusos.* |
+|                                                                                                           |
 
-2. Material metálico: Al contrario que el material difuso, el material metálico refleja la luz en el mismo ángulo en dirección opuesta respecto al ángulo de incidencia. Este efecto produce un reflejo de la misma manera que un espejo. Este material también cuenta con un parámetro que controla la borrosidad (o fuzziness, en inglés) del reflejo.
-3. Material dieléctrico: Este material representa materiales transparentes como agua y cristal. Cuando la luz incide sobre el material, se divide en luz reflejada (como el material metálico) y en luz refractada. La reflectividad se describe según las ecuaciones de Fresnel y la refracción según la ley de Snell. Este material también cuenta con un parámetro que controla el índice de refracción.
+2. Material metálico: Al contrario que el material difuso, el material metálico refleja la luz en el mismo ángulo en dirección opuesta respecto al ángulo de incidencia. Este efecto produce un reflejo de la misma manera que un espejo. Este material también cuenta con un parámetro que controla la borrosidad (o fuzziness, en inglés) del reflejo. En la figura X se puede observar el efecto espejo del material junto a el parámetro de borrosidad.
+
+|                                                                                 ![](Resources/03_crop.png)                                                                                  |
+|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| *Figura X: Render de tres esferas de diferentes colores sobre una superficie gris. Materiales metálicos con distinta borrosidad: 0.1 (izquierda), 0 (centro y superficie) y 0.5 (derecha).* |
+
+3. Material dieléctrico: Este material representa materiales transparentes como agua y cristal. Cuando la luz incide sobre el material, se divide en luz reflejada (como el material metálico) y en luz refractada. La reflectividad se describe según las ecuaciones de Fresnel y la refracción según la ley de Snell. Este material también cuenta con un parámetro que controla el índice de refracción. En la figura X se puede apreciar el efecto de distintos índices de refracción. Tambien se puede observar la luz refractada en la bola de la derecha debido a un índice de refracción elevado. Cabe estacar que las bolas de materiales dieléctricos no tienen sombra, se puede comprobar que ese es el caso observando una bola de cristal en un día nublado.
+
+|                                                                                                              ![](Resources/04_crop.png)                                                                                                               |
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| *Figura X: Render de tres bolas con un material dieléctrico y tres esferas de distintos colores, sobre una superficie gris. Los indices de refracción de las tres bolas son: 1.3 (agua, izquierda), 1.5 (cristal, centro) y 2.4 (diamante, derecha).* |
 
 También existen otras formas mas completas de definir materiales como las descritas en los modelos de [Disney](https://media.disneyanimation.com/uploads/production/publication_asset/48/asset/s2012_pbs_disney_brdf_notes_v3.pdf), [Autodesk](https://autodesk.github.io/standard-surface/#closures) o [OpenPBR](https://academysoftwarefoundation.github.io/OpenPBR/).
 
-> Imagen de una escena comparativa con esferas de todos los materiales
+|                                                                      ![](Resources/01_materials.png)                                                                       |
+|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| *Figura X: Render demostrando los distintos materiales. Basado en el render de la figura X-1 (superficie y esfera azul metálicas con borrosidad 0 y 0.3 respectivamente).* |
+|                                                                                                                                                                            |
 
 #### 3.1.3. Iluminación
 
