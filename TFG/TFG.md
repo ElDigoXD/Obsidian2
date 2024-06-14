@@ -59,9 +59,9 @@ La ultima sección de la definición de la escena virtual es la iluminación. La
 El cielo ilumina de manera uniforme la escena mientras que las fuentes de luz puntuales siguen el modelo de reflexión de Blinn-Phong, que describe la forma en la que una superficie refleja la luz como una combinación de la iluminación difusa y la iluminación especular. No se incluye el término ambiental del modelo ya que se utiliza el cielo.
 
 
-
-> Imagen de la escena de iluminación con los tres componentes y la suma de ellos
-
+|                                                                                                                                 ![](Resources/05_agg.png)                                                                                                                                  |
+|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| Figura X: Render de tres esferas con iluminación puntual e iluminación ambiente, separado en sus componentes: Especular (superior izquierda), difuso por punto de luz (superior derecha), difuso por iluminación ambiente (inferior izquierda) y componentes agregados (inferior derecha). |
 
 ### 3.2. Generación de hologramas digitales (DH)
 
