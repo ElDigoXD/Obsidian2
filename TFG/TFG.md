@@ -5,6 +5,15 @@
 
 ## 2. Estado del arte
 
+En el estudio [*The state-of-the-art in computer generated holography for 3D display (Blinder et al., 2022)*](https://www.light-am.com/article/doi/10.37188/lam.2022.035) se ofrece una vision general del estado del arte en CGH, una clasificación de los algoritmos modernos y diferentes técnicas algorítmicas de aceleración, incluyendo soluciones hardware dedicadas. 
+
+Entre los algoritmos clasificados se encuentran los dos que se van a utilizar en este trabajo:
+
+* Método de nube de puntos: Una de las técnicas más utilizadas en la que se discretiza la escena muestreando las superficies y las amplitudes en esos puntos y se calcula la suma de todas las funciones de dispersión de puntos (PSFs) en el plano del holograma. Las limitaciones de este método son el alto coste computacional y que los puntos infinitesimales no son ideales para modelar oclusiones y reflejos de luz. 
+* Trazado de rayos: Es una técnica para modelar el transporte de la luz basada en el seguimiento de rayos de luz individuales que rebotan en la escena e interactúan con materiales, calculando con precisión la cantidad de luz alcanzando cada píxel de la cámara virtual. Esta técnica puede aprovecharse en CGH para modelar también el transporte de la luz. Sin embargo, no puede utilizarse directamente, ya que la holografía se basa fundamentalmente en ondas, lo que difiere sustancialmente de los modelos basados en rayos. Uno de los principales problemas es la necesidad de obtener un continuo de puntos de vista y otro problema es la falta de coherencia de fase. Estos dos problemas hacen que los métodos basados en el trazado de rayos han de ser adaptados o combinados con otros algoritmos para ser utilizados efectivamente.
+
+> La explicación en [Photorealistic computer generated holography with global illumination and path tracing](https://opg.optica.org/ol/fulltext.cfm?uri=ol-46-9-2188&id=450534) me gusta más
+
 ## 3. Proceso de síntesis de escenas virtuales en 3D mediante hologramas digitales
 
 En este apartado se detallará el proceso de síntesis, dividido en tres secciones:
