@@ -3,14 +3,27 @@
 
 > En este apartado se establecerá el contexto y la motivación del trabajo, explicando la importancia de la síntesis de hologramas digitales generados por computador (CGHs) y el papel del trazado de rayos en el proceso. También se definirán los objetivos del TFG, incluyendo la creación de escenas sintéticas, la creación de un trazador de rayos clásico, su adaptación para generar hologramas y la propagación del frente de ondas para validar los resultados.
 
+La holografía es una técnica que permite capturar y reconstruir el campo de ondas completo de la luz. La holografía digital se utiliza hoy en día para varios propósitos, entre los que se encuentran los sistemas de pantallas tridimensionales (3D) \[[1](https://www.sciencedirect.com/science/article/pii/S0923596518304855)].  Las pantallas 3D holográficas permiten reproducir todas las señales de profundidad visuales naturales conocidas, como la oclusión, la acomodación del ojo, la convergencia y la estereopsis. Todas las señales de profundidad pueden observarse a simple vista en las pantallas holográficas, por lo que, en teoría, pueden reproducir una representación tridimensional fiel de cualquier escena sin restricciones en cuanto al contenido de la misma \[[2](https://www.light-am.com/article/doi/10.37188/lam.2022.035)].
+
+El objetivo de la holografía generada por computador (CGH) es diseñar algoritmos que optimizan tanto el realismo como la eficiencia computacional de los hologramas generados. El principal desafío en CGH es que la naturaleza basada en ondas de la holografía implica que cada punto en el espacio puede afectar a cada pixel del holograma, haciendo que los cálculos de fuerza bruta sean demasiado lentos para la mayoría de aplicaciones \[1].
+
+
+
 ## 2. Estado del arte
 
 En el estudio [*The state-of-the-art in computer generated holography for 3D display (Blinder et al., 2022)*](https://www.light-am.com/article/doi/10.37188/lam.2022.035) se ofrece una vision general del estado del arte en CGH, una clasificación de los algoritmos modernos y diferentes técnicas algorítmicas de aceleración, incluyendo soluciones hardware dedicadas. 
 
 Entre los algoritmos clasificados se encuentran los dos que se van a utilizar en este trabajo:
 
+---
+
 * Método de nube de puntos: Una de las técnicas más utilizadas en la que se discretiza la escena muestreando las superficies y las amplitudes en esos puntos y se calcula la suma de todas las funciones de dispersión de puntos (PSFs) en el plano del holograma. Las limitaciones de este método son el alto coste computacional y que los puntos infinitesimales no son ideales para modelar oclusiones y reflejos de luz. 
 * Trazado de rayos: Es una técnica para modelar el transporte de la luz basada en el seguimiento de rayos de luz individuales que rebotan en la escena e interactúan con materiales, calculando con precisión la cantidad de luz alcanzando cada píxel de la cámara virtual. Esta técnica puede aprovecharse en CGH para modelar también el transporte de la luz. Sin embargo, no puede utilizarse directamente, ya que la holografía se basa fundamentalmente en ondas, lo que difiere sustancialmente de los modelos basados en rayos. Uno de los principales problemas es la necesidad de obtener un continuo de puntos de vista y otro problema es la falta de coherencia de fase. Estos dos problemas hacen que los métodos basados en el trazado de rayos han de ser adaptados o combinados con otros algoritmos para ser utilizados efectivamente.
+
+---
+
+* Nube de puntos: Esta técnica consiste en la suma de todas las funciones de dispersion de puntos (PSFs), en el plano del holograma, que emanan de una colección de puntos luminosos. Las principales limitaciones de esta técnica son (1) la falta de soporte de efectos básicos como la oclusión y el sombreado; y (2) el alto coste computacional, aunque el algoritmo es altamente paralelizable \[1].
+* 
 
 > La explicación en [Photorealistic computer generated holography with global illumination and path tracing](https://opg.optica.org/ol/fulltext.cfm?uri=ol-46-9-2188&id=450534) me gusta más
 
