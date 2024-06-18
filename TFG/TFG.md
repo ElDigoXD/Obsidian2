@@ -23,9 +23,13 @@ Entre los algoritmos clasificados se encuentran los dos que se van a utilizar en
 ---
 
 * Nube de puntos: Esta técnica consiste en la suma de todas las funciones de dispersion de puntos (PSFs), en el plano del holograma, que emanan de una colección de puntos luminosos. Las principales limitaciones de esta técnica son (1) la falta de soporte de efectos básicos como la oclusión y el sombreado; y (2) el alto coste computacional, aunque el algoritmo es altamente paralelizable \[1].
-* 
+* Trazado de rayos: (anterior)
 
-> La explicación en [Photorealistic computer generated holography with global illumination and path tracing](https://opg.optica.org/ol/fulltext.cfm?uri=ol-46-9-2188&id=450534) me gusta más
+En \[1] se propone un método híbrido que toma los mejores aspectos de los métodos de nube de puntos y del trazado de rayos. En vez de calcular directamente el campo de luz en el plano del holograma, se calcula la función de distribución de reflectancia bidireccional (BDRF) en cada punto de la nube de puntos, modulando la expresión estándar de la PSF. De este modo se consiguen efectos de iluminación realistas, sin comprometer la coherencia de la fase, lo que da lugar a vistas continuas y señales de profundidad precisas.
+
+
+
+> ¿Imágenes en el estado del arte? 
 
 ## 3. Proceso de síntesis de escenas virtuales en 3D mediante hologramas digitales
 
