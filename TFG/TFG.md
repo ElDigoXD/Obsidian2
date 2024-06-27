@@ -13,6 +13,8 @@ En este trabajo de final de grado se pretende implementar un trazador de rayos p
 
 En el estudio [*The state-of-the-art in computer generated holography for 3D display (Blinder et al., 2022)*](https://www.light-am.com/article/doi/10.37188/lam.2022.035) se ofrece una vision general del estado del arte en CGH, una clasificación de los algoritmos modernos y diferentes técnicas algorítmicas de aceleración, incluyendo soluciones hardware dedicadas. 
 
+> Párrafo cgi, cgh.
+
 Entre los algoritmos clasificados se encuentran los dos que se van a utilizar en este trabajo:
 
 ---
@@ -27,7 +29,7 @@ Entre los algoritmos clasificados se encuentran los dos que se van a utilizar en
 
 En \[1] se propone un método híbrido que toma los mejores aspectos de los métodos de nube de puntos y del trazado de rayos. En vez de calcular directamente el campo de luz en el plano del holograma, se calcula la función de distribución de reflectancia bidireccional (BDRF) en cada punto de la nube de puntos, modulando la expresión estándar de la PSF. De este modo se consiguen efectos de iluminación realistas, sin comprometer la coherencia de la fase, lo que da lugar a vistas continuas y señales de profundidad precisas.
 
-
+> convolucion, gpu
 
 > ¿Imágenes en el estado del arte? 
 
