@@ -5,29 +5,39 @@
 
 La holografía es una técnica que permite capturar y reconstruir el campo de ondas completo de la luz. La holografía digital se utiliza hoy en día para varios propósitos, entre los que se encuentran los sistemas de pantallas tridimensionales (3D) \[[1](https://www.sciencedirect.com/science/article/pii/S0923596518304855)].  Las pantallas 3D holográficas permiten reproducir todas las señales de profundidad visuales naturales conocidas, como la oclusión, la acomodación del ojo, la convergencia y la estereopsis. Todas las señales de profundidad pueden observarse a simple vista en las pantallas holográficas, por lo que, en teoría, pueden reproducir una representación tridimensional fiel de cualquier escena sin restricciones en cuanto al contenido de la misma \[[2](https://www.light-am.com/article/doi/10.37188/lam.2022.035)].
 
-Los hologramas a mostrar pueden ser obtenidos capturando el holograma de un objeto real, análogo a realizar una fotografía, o generando el holograma mediante un computador, análogo a la generación de images por ordenador (CGI). El objetivo de la holografía generada por computador (CGH) es diseñar algoritmos que optimizan tanto el realismo como la eficiencia computacional de los hologramas generados. El principal desafío en CGH es que la naturaleza basada en ondas de la holografía implica que cada punto en el espacio puede afectar a cada pixel del holograma, haciendo que los cálculos de fuerza bruta sean demasiado lentos para la mayoría de aplicaciones \[1].
+Los hologramas a mostrar pueden ser obtenidos capturando el holograma de un objeto real, análogo a realizar una fotografía, o generando el holograma mediante un computador, análogo a la generación de images por computador. Uno de los mayores desafíos de la generación de hologramas por computador (CGH) es generar hologramas realistas en tiempos computacionales aceptables \[1.4].
 
-En este trabajo de final de grado se pretende implementar un trazador de rayos para generar imágenes por computador el cuál simule el comportamiento de los rayos de luz basado en la física (Physically Based Ray Tracing o PBRT, en inglés). Se acelerará el algoritmo de trazado de rayos mediante paralelización tanto para CPU como para GPU. Una vez implementado el trazador de rayos se modificará el algoritmo para que genere hologramas, introduciendo la técnica de nubes de puntos. Por último, se simularán los hologramas generados mediante la propagación del frente de ondas y 
+En este trabajo de final de grado se implementa un trazador de rayos para generar imágenes (2D) por computador el cuál simula el comportamiento de los rayos de luz basado en la física (Physically Based Ray Tracing o PBRT, en inglés). Además se implementa un trazador de rayos para generar hologramas (3D) por computador que hace uso de la técnica de la nube de puntos. Por último, se visualizan los hologramas generados, tanto por simulación como en el laboratorio.
+
+> GPU, el cómo
 
 ## 2. Estado del arte
 
-En el estudio [*The state-of-the-art in computer generated holography for 3D display (Blinder et al., 2022)*](https://www.light-am.com/article/doi/10.37188/lam.2022.035) se ofrece una vision general del estado del arte en CGH, una clasificación de los algoritmos modernos y diferentes técnicas algorítmicas de aceleración, incluyendo soluciones hardware dedicadas. 
+La generación de imágenes por computador (Computer-Generated Imagery o CGI, en inglés) es un campo de la computación gráfica bien estudiado y es utilizado en una gran variedad de areas, como el cine y los videojuegos. Consiste en capturar una escena virtual en un plano, para su posterior visualización.
 
-> Párrafo cgi, cgh.
+Una de las técnicas más utilizadas en CGI es el trazado de rayos, que permite simular el transporte de la luz. El libro  [Ray Tracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)  detalla tanto la teoría como la implementación y el libro [Physically Based Rendering: From Theory To Implementation](https://pbr-book.org/4ed/contents) profundiza en ambos.
+
+La generación de hologramas por computador (Computer-Generated Holography o CGH, en inglés) es una técnica la cual utiliza algoritmos para generar hologramas (3D) mediante la captura del frente de ondas de la luz en un plano.
+
+En el estudio \[2] se ofrece una vision general del estado del arte en CGH, una clasificación de los algoritmos modernos y diferentes técnicas algorítmicas de aceleración, incluyendo soluciones hardware dedicadas. 
 
 Entre los algoritmos clasificados se encuentran los dos que se van a utilizar en este trabajo:
 
----
+* Nube de puntos: Esta técnica consiste en la suma de todas las funciones de dispersion de puntos (PSFs), en el plano del holograma, que emanan de una colección de puntos luminosos. Las principales limitaciones de esta técnica son (1) la falta de soporte de efectos básicos como la oclusión y el sombreado; y (2) el alto coste computacional, aunque el algoritmo es altamente paralelizable \[[3](https://opg.optica.org/ol/viewmedia.cfm?uri=ol-46-9-2188&html=true)]. 
 
-* Método de nube de puntos: Una de las técnicas más utilizadas en la que se discretiza la escena muestreando las superficies y las amplitudes en esos puntos y se calcula la suma de todas las funciones de dispersión de puntos (PSFs) en el plano del holograma. Las limitaciones de este método son el alto coste computacional y que los puntos infinitesimales no son ideales para modelar oclusiones y reflejos de luz. 
-* Trazado de rayos: Es una técnica para modelar el transporte de la luz basada en el seguimiento de rayos de luz individuales que rebotan en la escena e interactúan con materiales, calculando con precisión la cantidad de luz alcanzando cada píxel de la cámara virtual. Esta técnica puede aprovecharse en CGH para modelar también el transporte de la luz. Sin embargo, no puede utilizarse directamente, ya que la holografía se basa fundamentalmente en ondas, lo que difiere sustancialmente de los modelos basados en rayos. Uno de los principales problemas es la necesidad de obtener un continuo de puntos de vista y otro problema es la falta de coherencia de fase. Estos dos problemas hacen que los métodos basados en el trazado de rayos han de ser adaptados o combinados con otros algoritmos para ser utilizados efectivamente.
+|                                ![](tecnica_nube_puntos.png)                                 |
+|:-------------------------------------------------------------------------------------------:|
+| Figura X: Diagrama del algoritmo de la nube de puntos. Fuente: (Blinder et al., 2022) \[2]. |
 
----
+* Trazado de rayos: Es una técnica para modelar el transporte de la luz basada en el seguimiento de rayos de luz individuales que rebotan en la escena e interactúan con materiales, calculando con precisión la cantidad de luz alcanzando cada píxel de la cámara virtual. Esta técnica puede aprovecharse en CGH para modelar también el transporte de la luz. Sin embargo, no puede utilizarse directamente, ya que la holografía se basa fundamentalmente en ondas, lo que difiere sustancialmente de los modelos basados en rayos. Uno de los principales problemas es la necesidad de obtener un continuo de puntos de vista y otro problema es la falta de coherencia de fase de la luz. Estos dos problemas hacen que los métodos basados en el trazado de rayos han de ser adaptados o combinados con otros algoritmos para ser utilizados efectivamente \[2].
 
-* Nube de puntos: Esta técnica consiste en la suma de todas las funciones de dispersion de puntos (PSFs), en el plano del holograma, que emanan de una colección de puntos luminosos. Las principales limitaciones de esta técnica son (1) la falta de soporte de efectos básicos como la oclusión y el sombreado; y (2) el alto coste computacional, aunque el algoritmo es altamente paralelizable \[1].
-* Trazado de rayos: (anterior)
+|                                                                               ![](tecnica_raytracing_coherente.jpg)                                                                                |
+|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| Figura X: Diagrama mostrando la diferencia entre las técnicas de nube de puntos (a) y el trazado de rayos (b). Se puede observar la incoherencia del segundo. Fuente: (Blinder et al., 2021) \[3]. |
 
-En \[1] se propone un método híbrido que toma los mejores aspectos de los métodos de nube de puntos y del trazado de rayos. En vez de calcular directamente el campo de luz en el plano del holograma, se calcula la función de distribución de reflectancia bidireccional (BDRF) en cada punto de la nube de puntos, modulando la expresión estándar de la PSF. De este modo se consiguen efectos de iluminación realistas, sin comprometer la coherencia de la fase, lo que da lugar a vistas continuas y señales de profundidad precisas.
+En \[3] se propone un método híbrido que toma los mejores aspectos de los métodos de nube de puntos y del trazado de rayos. En vez de calcular directamente el campo de luz en el plano del holograma, se calcula la función de distribución de reflectancia bidireccional (BDRF) en cada punto de la nube de puntos, modulando la expresión estándar de la PSF. De este modo se consiguen efectos de iluminación realistas, sin comprometer la coherencia de la fase, lo que da lugar a vistas continuas y señales de profundidad precisas.
+
+La naturaleza del algoritmo de trazado de rayos permite que pueda ser acelerado mediante paralelización, ya que los rayos son independientes unos de los otros. En \[3] se paraleliza en GPUs mediante CUDA y OptiX.
 
 > convolucion, gpu
 
@@ -103,7 +113,7 @@ El trazado de rayos se considera una técnica computacionalmente costosa, por lo
 
 > Quizás hablar de BDRF (Bidirectional reflectance distribution function)
 
-Según el libro[ Physically Based Rendering: From Theory To Implementation](https://pbr-book.org/4ed/contents) un trazador de rayos ha de simular al menos los siguientes objetos y fenómenos:
+Según el libro [Physically Based Rendering: From Theory To Implementation](https://pbr-book.org/4ed/contents) un trazador de rayos ha de simular al menos los siguientes objetos y fenómenos:
 
 + Camaras: El modelo de una camara determina cómo y desde dónde la escena es observada, incluyendo como una imagen de la escena es recogida por un sensor.
 + Intersecciones rayo-objeto: Es necesario conocer precisamente cuándo y dónde un rayo intersecta un objeto geométrico, además de determinar algunas propiedades del objeto en el punto de intersección.
@@ -217,6 +227,7 @@ En el trazador de rayos implementado se ha dividido la imagen en líneas de píx
 - https://raytracing.github.io/
 - https://developer.nvidia.com/blog/accelerated-ray-tracing-cuda/
 - https://www.youtube.com/watch?v=KkOkx0FiHDA
+- [Computer-generated holograms for 3D imaging: A survey](https://trepo.tuni.fi//bitstream/handle/10024/127486/ACM_CSUR_Sahin_revised_submitted.pdf)
 
 ---
 
