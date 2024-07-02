@@ -10,14 +10,18 @@ Los hologramas a mostrar pueden ser obtenidos capturando el holograma de un obje
 En este trabajo de final de grado se implementa un trazador de rayos para generar imágenes (2D) por computador el cuál simula el comportamiento de los rayos de luz basado en la física (Physically Based Ray Tracing o PBRT, en inglés). Además se implementa un trazador de rayos para generar hologramas (3D) por computador que hace uso de la técnica de la nube de puntos. Por último, se visualizan los hologramas generados, tanto por simulación como en el laboratorio.
 
 > GPU, el cómo
-
+> Dado que la exigencia computacional de este problema es muy alta y mucho mayor que las aplicaciones de cg, este proyecto propone una solución adecuada para abordar este problema que tiene en cuenta la arquitectura, los algoritmos, etc. teniendo en cuenta la alta paralelización del problema. En el trabajo se tiene en cuenta la paralelización tanto en cpu como gpu utilizando cpp y cuda.
 ## 2. Estado del arte
 
 La generación de imágenes por computador (Computer-Generated Imagery o CGI, en inglés) es un campo de la computación gráfica bien estudiado y es utilizado en una gran variedad de areas, como el cine y los videojuegos. Consiste en capturar una escena virtual en un plano, para su posterior visualización.
 
 Una de las técnicas más utilizadas en CGI es el trazado de rayos, que permite simular el transporte de la luz. El libro  [Ray Tracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)  detalla tanto la teoría como la implementación y el libro [Physically Based Rendering: From Theory To Implementation](https://pbr-book.org/4ed/contents) profundiza en ambos.
 
-La generación de hologramas por computador (Computer-Generated Holography o CGH, en inglés) es una técnica la cual utiliza algoritmos para generar hologramas (3D) mediante la captura del frente de ondas de la luz en un plano.
+> a partir de este conocimiento se pretende desarrollar escenas sintéticas que puedan ser utilizadas en el trabajo
+
+La generación de hologramas por computador (Computer-Generated Holography o CGH, en inglés) es una técnica la cual utiliza algoritmos para generar hologramas (3D) mediante la captura del frente de ondas de la luz en un plano. 
+
+> los cghs pueden almacenar tanto objetos reales como simulados.
 
 En el estudio \[2] se ofrece una vision general del estado del arte en CGH, una clasificación de los algoritmos modernos y diferentes técnicas algorítmicas de aceleración, incluyendo soluciones hardware dedicadas. 
 
@@ -40,13 +44,12 @@ En \[3] se propone un método híbrido que toma los mejores aspectos de los mét
 La naturaleza del algoritmo de trazado de rayos permite que pueda ser acelerado mediante paralelización, ya que los rayos son independientes unos de los otros. En \[3] se paraleliza en GPUs mediante CUDA y OptiX.
 
 > convolucion, gpu
-
-> ¿Imágenes en el estado del arte? 
-
+> reordenar y definir todos los conceptos., orden de magnitud \[3]
 ## 3. Proceso de síntesis de escenas virtuales en 3D mediante hologramas digitales
 
 En este apartado se detallará el proceso de síntesis, dividido en tres secciones:
 
+> Introducir arquitectura.
 ### 3.1. Definición de la escena virtual
 
 El primer paso para la síntesis de escenas virtuales consiste en definir la escena que se desea producir. Veamos el siguiente ejemplo:
@@ -100,7 +103,7 @@ El cielo ilumina de manera uniforme la escena mientras que las fuentes de luz pu
 |                                                                                                                                 ![](Resources/05_agg.png)                                                                                                                                  |
 |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | Figura X: Render de tres esferas con iluminación puntual e iluminación ambiente, separado en sus componentes: Especular (superior izquierda), difuso por punto de luz (superior derecha), difuso por iluminación ambiente (inferior izquierda) y componentes agregados (inferior derecha). |
-
+> definición de la escena para cgh
 ### 3.2. Generación de hologramas digitales (DH)
 
 #### 3.2.1. Trazado de rayos
@@ -122,6 +125,8 @@ Según el libro [Physically Based Rendering: From Theory To Implementation](http
 + Dispersion de la luz en superficies: Cada objeto ha de proveer información sobre como la luz interactúa con la superficie del objeto.
 + Transporte indirecto de luz: La luz puede llegar a la superficie después de rebotar o atravesar otras superficies.
 + Propagación de rayos: Se necesita conocer el comportamiento de la luz mientras atraviesa un espacio, siendo constante en el vacío.
+
+> al estado del arte
 
 A continuación se detallará el el funcionamiento de la implementación realizada en este trabajo.
 
@@ -152,9 +157,9 @@ Una vez lanzado el rayo se comprueba si intersecta con algún objeto de la escen
 
 > El nombre de la sección suena muy complicado
 
-Una vez implementado un trazador de rayos para la generación de imágenes, se ha modificado para generar hologramas. Las principales modificaciones realizadas han sido el proceso de lanzar rayos y el cambio del calculo del color del rayo a la amplitud y fase.
+Una vez implementado el trazador de rayos para la generación de imágenes, se ha modificado para generar hologramas. Las principales modificaciones realizadas han sido el proceso de lanzar rayos y el cambio del calculo del color del rayo a la amplitud y fase.
 
-Para obtener la amplitud y la fase de cada pixel \[del SLM] se ha de calcular respecto a cada punto a muestrear, siendo los mismos puntos para cada pixel por razones relacionadas con la coherencia. Para determinar estos puntos se ha utilizado la técnica de la nube de puntos, según la cual se crea una lista de puntos en las superficies de los objetos.
+Para obtener la amplitud y la fase de cada pixel \[del SLM] se ha de calcular respecto a cada punto de la escena a muestrear, siendo los mismos puntos para cada pixel por razones relacionadas con la coherencia. Para determinar estos puntos se ha utilizado la técnica de la nube de puntos, según la cual se crea una lista de puntos en las superficies de los objetos.
 
 > Mencionar cálculos
 
