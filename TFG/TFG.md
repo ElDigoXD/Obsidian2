@@ -9,21 +9,34 @@ Los hologramas a mostrar pueden ser obtenidos capturando el holograma de un obje
 
 En este trabajo de final de grado se implementa un trazador de rayos para generar imágenes (2D) por computador el cuál simula el comportamiento de los rayos de luz basado en la física (Physically Based Ray Tracing o PBRT, en inglés). Además se implementa un trazador de rayos para generar hologramas (3D) por computador que hace uso de la técnica de la nube de puntos. Por último, se visualizan los hologramas generados, tanto por simulación como en el laboratorio.
 
-> GPU, el cómo
-> Dado que la exigencia computacional de este problema es muy alta y mucho mayor que las aplicaciones de cg, este proyecto propone una solución adecuada para abordar este problema que tiene en cuenta la arquitectura, los algoritmos, etc. teniendo en cuenta la alta paralelización del problema. En el trabajo se tiene en cuenta la paralelización tanto en cpu como gpu utilizando cpp y cuda.
+Dado que la exigencia computacional de este problema es muy alta y mucho mayor que las aplicaciones tradicionales de la computación gráfica, este proyecto propone una solución adecuada para abordar este problema que tiene en cuenta la arquitectura del software, los algoritmos y la alta paralelización del problema. En el trabajo se tiene en cuenta la paralelización tanto en CPU como en GPU utilizando los lenguajes C++ y CUDA.
+
 ## 2. Estado del arte
 
 La generación de imágenes por computador (Computer-Generated Imagery o CGI, en inglés) es un campo de la computación gráfica bien estudiado y es utilizado en una gran variedad de areas, como el cine y los videojuegos. Consiste en capturar una escena virtual en un plano, para su posterior visualización.
 
-Una de las técnicas más utilizadas en CGI es el trazado de rayos, que permite simular el transporte de la luz. El libro  [Ray Tracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)  detalla tanto la teoría como la implementación y el libro [Physically Based Rendering: From Theory To Implementation](https://pbr-book.org/4ed/contents) profundiza en ambos.
+Una de las técnicas más utilizadas en CGI es el trazado de rayos. El libro  [Ray Tracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)  detalla tanto la teoría como la implementación y el libro [Physically Based Rendering: From Theory To Implementation](https://pbr-book.org/4ed/contents) profundiza en ambos.
 
-> a partir de este conocimiento se pretende desarrollar escenas sintéticas que puedan ser utilizadas en el trabajo
+El trazado de rayos (o ray tracing, en inglés) es una técnica para simular el comportamiento de la luz para sintetizar escenas virtuales. El trazado de rayos se considera una técnica computacionalmente costosa, por lo que es utilizada principalmente para crear imágenes generadas por computador (CGI) estáticas y efectos visuales.
+
+Según el libro [Physically Based Rendering: From Theory To Implementation](https://pbr-book.org/4ed/contents) un trazador de rayos completo ha de simular al menos los siguientes objetos y fenómenos:
+
++ Camaras: El modelo de una camara determina cómo y desde dónde la escena es observada, incluyendo como una imagen de la escena es recogida por un sensor.
++ Intersecciones rayo-objeto: Es necesario conocer precisamente cuándo y dónde un rayo intersecta un objeto geométrico, además de determinar algunas propiedades del objeto en el punto de intersección.
++ Fuentes de luz: El trazador de rayos ha de modelar la distribución de la luz en la escena.
++ Visibilidad: Se debe poder conocer si una luz determinada deposita energía en un punto de una superficie.
++ Dispersion de la luz en superficies: Cada objeto ha de proveer información sobre como la luz interactúa con la superficie del objeto.
++ Transporte indirecto de luz: La luz puede llegar a la superficie después de rebotar o atravesar otras superficies.
++ Propagación de rayos: Se necesita conocer el comportamiento de la luz mientras atraviesa un espacio, siendo constante en el vacío.
+
+A partir de este conocimiento se pretende sintetizar escenas que puedan ser utilizadas en el trabajo.
 
 La generación de hologramas por computador (Computer-Generated Holography o CGH, en inglés) es una técnica la cual utiliza algoritmos para generar hologramas (3D) mediante la captura del frente de ondas de la luz en un plano. 
 
 > los cghs pueden almacenar tanto objetos reales como simulados.
+> Eso serían simplemente hologramas digitales.
 
-En el estudio \[2] se ofrece una vision general del estado del arte en CGH, una clasificación de los algoritmos modernos y diferentes técnicas algorítmicas de aceleración, incluyendo soluciones hardware dedicadas. 
+En el estudio \[2] se ofrece una vision general del estado del arte en CGH, una clasificación de los algoritmos modernos y diferentes técnicas de aceleración, incluyendo soluciones hardware dedicadas. 
 
 Entre los algoritmos clasificados se encuentran los dos que se van a utilizar en este trabajo:
 
@@ -39,17 +52,23 @@ Entre los algoritmos clasificados se encuentran los dos que se van a utilizar en
 |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | Figura X: Diagrama mostrando la diferencia entre las técnicas de nube de puntos (a) y el trazado de rayos (b). Se puede observar la incoherencia del segundo. Fuente: (Blinder et al., 2021) \[3]. |
 
-En \[3] se propone un método híbrido que toma los mejores aspectos de los métodos de nube de puntos y del trazado de rayos. En vez de calcular directamente el campo de luz en el plano del holograma, se calcula la función de distribución de reflectancia bidireccional (BDRF) en cada punto de la nube de puntos, modulando la expresión estándar de la PSF. De este modo se consiguen efectos de iluminación realistas, sin comprometer la coherencia de la fase, lo que da lugar a vistas continuas y señales de profundidad precisas.
+En \[3] se propone un método híbrido que toma los mejores aspectos de los métodos de nube de puntos y del trazado de rayos. En vez de calcular directamente el campo de luz en el plano del holograma, se calcula la intensidad en cada punto de la nube de puntos mediante trazado de rayos, y se calcula la PSF con esa intensidad. De este modo se consiguen efectos de iluminación realistas, sin comprometer la coherencia de la fase, lo que da lugar a vistas continuas y señales de profundidad precisas.
 
 La naturaleza del algoritmo de trazado de rayos permite que pueda ser acelerado mediante paralelización, ya que los rayos son independientes unos de los otros. En \[3] se paraleliza en GPUs mediante CUDA y OptiX.
 
+PSF: La función de dispersión de puntos (PSF) describe respuesta de un sistema de imagen a un objeto o fuente puntual. (En este caso describe la propagación de la luz desde el punto hasta el sensor/cámara) \[[wp](https://en.wikipedia.org/wiki/Point_spread_function)].
+
+
 > convolucion, gpu
 > reordenar y definir todos los conceptos., orden de magnitud \[3]
+> No hay comparación de la orden de magnitud, solamente 1h50min
+
 ## 3. Proceso de síntesis de escenas virtuales en 3D mediante hologramas digitales
 
-En este apartado se detallará el proceso de síntesis, dividido en tres secciones:
+En este apartado se detallará el proceso de síntesis, dividido en tres secciones: definición de la escena virtual, generación de hologramas digitales y reconstrucción de la escena.
 
-> Introducir arquitectura.
+La implementación se ha realizado mediante el uso de los lenguajes C++ y CUDA para la definición de la escena virtual y la generación de hologramas digitales, y Python para la reconstrucción de la escena. Las librerías utilizadas se enumeran en el anexo Repositorios.
+
 ### 3.1. Definición de la escena virtual
 
 El primer paso para la síntesis de escenas virtuales consiste en definir la escena que se desea producir. Veamos el siguiente ejemplo:
@@ -103,6 +122,7 @@ El cielo ilumina de manera uniforme la escena mientras que las fuentes de luz pu
 |                                                                                                                                 ![](Resources/05_agg.png)                                                                                                                                  |
 |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | Figura X: Render de tres esferas con iluminación puntual e iluminación ambiente, separado en sus componentes: Especular (superior izquierda), difuso por punto de luz (superior derecha), difuso por iluminación ambiente (inferior izquierda) y componentes agregados (inferior derecha). |
+
 > definición de la escena para cgh
 ### 3.2. Generación de hologramas digitales (DH)
 
@@ -110,29 +130,14 @@ El cielo ilumina de manera uniforme la escena mientras que las fuentes de luz pu
 
 > En este apartado se detallará el algoritmo de trazado de rayos utilizado para generar imágenes, explicando cómo se simulan los rayos de luz desde la fuente hasta el detector y las principales diferencias con la realidad. (cámara, generación de rayos, muestreo, intersección, interacción con materiales, número máximo de rebotes, iluminación) (Referencias a los libros) (Imágenes de los resultados, la del final del primer libro y alguna malla)
 
-El trazado de rayos (o ray tracing, en inglés) es una técnica para simular el comportamiento de la luz para sintetizar escenas virtuales. En este trabajo concretamente se utiliza el algoritmo de trazado de caminos (o path tracing, en inglés), el cual simula más efectos que el trazado de rayos convencional gracias al uso de simulaciones de Monte Carlo.
 
-El trazado de rayos se considera una técnica computacionalmente costosa, por lo que es utilizada principalmente para crear imágenes generadas por computador (CGI) estáticas y efectos visuales.
-
-> Quizás hablar de BDRF (Bidirectional reflectance distribution function)
-
-Según el libro [Physically Based Rendering: From Theory To Implementation](https://pbr-book.org/4ed/contents) un trazador de rayos ha de simular al menos los siguientes objetos y fenómenos:
-
-+ Camaras: El modelo de una camara determina cómo y desde dónde la escena es observada, incluyendo como una imagen de la escena es recogida por un sensor.
-+ Intersecciones rayo-objeto: Es necesario conocer precisamente cuándo y dónde un rayo intersecta un objeto geométrico, además de determinar algunas propiedades del objeto en el punto de intersección.
-+ Fuentes de luz: El trazador de rayos ha de modelar la distribución de la luz en la escena.
-+ Visibilidad: Se debe poder conocer si una luz determinada deposita energía en un punto de una superficie.
-+ Dispersion de la luz en superficies: Cada objeto ha de proveer información sobre como la luz interactúa con la superficie del objeto.
-+ Transporte indirecto de luz: La luz puede llegar a la superficie después de rebotar o atravesar otras superficies.
-+ Propagación de rayos: Se necesita conocer el comportamiento de la luz mientras atraviesa un espacio, siendo constante en el vacío.
-
-> al estado del arte
+En este trabajo concretamente se utiliza el algoritmo de trazado de caminos (o path tracing, en inglés), el cual simula más efectos que el trazado de rayos convencional gracias al uso de simulaciones de Monte Carlo.
 
 A continuación se detallará el el funcionamiento de la implementación realizada en este trabajo.
 
 ##### Implementación
 
-El algoritmo se ha implementado en el lenguaje de programación C++ debido a su alto rendimiento, control sobre conceptos de bajo nivel (como gestion de la memoria) y compatibilidad con CUDA para acelerar mediante GPUs. La implementación inicial se ha basado en el libro [Ray Tracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html) y se han añadido más funcionalidades no incluidas en el libro.
+Como se ha mencionado anteriormente el algoritmo se ha implementado en el lenguaje de programación C++ debido a su alto rendimiento, control sobre conceptos de bajo nivel (como gestion de la memoria) y compatibilidad con CUDA para acelerar mediante GPUs. La implementación inicial se ha basado en el libro [Ray Tracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html) y se han añadido más funcionalidades no incluidas en el libro.
 
 El primer componente del trazador de rayos es la cámara, encargada de _lanzar_ los rayos ya que la propagación desde la fuente de luz hasta la cámara es equivalente a la propagación desde la cámara hasta la fuente de luz. La camara se basa en una cámara estenopeica (o camara oscura) sin lente aunque también es capaz de simular una lente para obtener el efecto de profundidad de campo.
 
