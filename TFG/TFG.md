@@ -151,6 +151,8 @@ La camara se define mediante su centro y su viewport. El centro de la camara es 
 
 > Imagen centro-viewport con pixeles (similar a figura 3 RTIOW)
 
+![](Resources/camera_rays.svg)
+
 Una vez lanzado el rayo se comprueba si intersecta con algún objeto de la escena iterando sobre ellos y se selecciona el objeto intersectado más cercano. De la intersección se obtiene el punto, la distancia respecto al origen del rayo, la normal de la superficie y el material del objeto. Con esta información, para la iluminación ambiente, se puede calcular la atenuación y la dirección del rayo dispersado dependiendo del material. Este proceso se repite hasta que el rayo dispersado no intersecta ningún objeto (o "escapa") y se atenúa con el color del cielo o, si alcanza el numero máximo de rebotes definido por el trazador de rayos, la atenuación sería total. Y para la iluminación puntual, siguiendo la misma ruta del rayo de la iluminación ambiente, se comprueba si el punto es visible para la fuente de luz trazando un rayo nuevo y, si lo es, se calcula la iluminación especular y la iluminación difusa, esta última en el caso de que el material sea difuso. 
 
 > Referencia a la imagen de la sección de iluminación.
