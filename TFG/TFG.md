@@ -153,13 +153,16 @@ La camara se define mediante su centro y su viewport. El centro de la camara es 
 
 ![](Resources/camera_rays.svg)
 
+![](Resources/camera_samples.svg)
+
 Una vez lanzado el rayo se comprueba si intersecta con algún objeto de la escena iterando sobre ellos y se selecciona el objeto intersectado más cercano. De la intersección se obtiene el punto, la distancia respecto al origen del rayo, la normal de la superficie y el material del objeto. Con esta información, para la iluminación ambiente, se puede calcular la atenuación y la dirección del rayo dispersado dependiendo del material. Este proceso se repite hasta que el rayo dispersado no intersecta ningún objeto (o "escapa") y se atenúa con el color del cielo o, si alcanza el numero máximo de rebotes definido por el trazador de rayos, la atenuación sería total. Y para la iluminación puntual, siguiendo la misma ruta del rayo de la iluminación ambiente, se comprueba si el punto es visible para la fuente de luz trazando un rayo nuevo y, si lo es, se calcula la iluminación especular y la iluminación difusa, esta última en el caso de que el material sea difuso. 
 
-> Referencia a la imagen de la sección de iluminación.
+![](Resources/bounces.svg)
 
-> Diagrama con la iluminación especular, lambert, metal y dieléctrico, similar a Wikipedia y RTIOW.
+|            ![](Resources/06_end_book_1.png)            |
+| :----------------------------------------------------: |
+| Figura X: Render de la escena final descrita en RTIOW. |
 
-> Imagen del final del libro 1 como demostración del trazador.
 
 #### 3.2.2. Calculo de amplitud y fase: aproximación escalar de la propagación de ondas electromagnéticas
 
@@ -170,6 +173,8 @@ Una vez lanzado el rayo se comprueba si intersecta con algún objeto de la escen
 Una vez implementado el trazador de rayos para la generación de imágenes, se ha modificado para generar hologramas. Las principales modificaciones realizadas han sido el proceso de lanzar rayos y el cambio del calculo del color del rayo a la amplitud y fase.
 
 Para obtener la amplitud y la fase de cada pixel \[del SLM] se ha de calcular respecto a cada punto de la escena a muestrear, siendo los mismos puntos para cada pixel por razones relacionadas con la coherencia. Para determinar estos puntos se ha utilizado la técnica de la nube de puntos, según la cual se crea una lista de puntos en las superficies de los objetos.
+
+
 
 > Mencionar cálculos
 
