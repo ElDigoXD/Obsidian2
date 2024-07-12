@@ -61,7 +61,6 @@ PSF: La función de dispersión de puntos (PSF) describe respuesta de un sistema
 
 > convolucion, gpu
 > reordenar y definir todos los conceptos., orden de magnitud \[3]
-> No hay comparación de la orden de magnitud, solamente 1h50min
 
 ## 3. Proceso de síntesis de escenas virtuales en 3D mediante hologramas digitales
 
@@ -76,13 +75,12 @@ El primer paso para la síntesis de escenas virtuales consiste en definir la esc
 > Imagen de ejemplo
 
 > Hablar de la interfaz
+> Se ha creado una interfaz de usuario la cual permite cambiar diferentes parámetros del trazador de rayos y de la escena en tiempo de ejecución.
 #### 3.1.1. Geometría
 
 La geometría de la escena se definirá mediante primitivas definidas matemáticamente. Estas primitivas son: triángulos, definidos mediante la posición espacial de sus vértices; y esferas, definidas mediante su radio y la posición espacial de su centro. 
 
-Utilizando la primitiva del triángulo se pueden representar mallas, definidas por una lista de triángulos. El soporte de mallas resulta muy útil ya que la mayoría de modelos 3D se encuentra en este formato. Para la importación de las mallas se ha utilizado la librería "tinyobjloader", la cual permite cargar archivos OBJ y extraer los vertices de sus triángulos.
-
-> Imagen de esfera {c r}, y triangulo {a b c}
+Utilizando la primitiva del triángulo se pueden representar mallas, definidas por una lista de triángulos. El soporte de mallas resulta muy útil ya que la mayoría de modelos 3D se encuentra en este formato. 
 
 #### 3.1.2. Textura
 
@@ -93,18 +91,22 @@ Una vez definida la geometría de la escena, es necesario aplicar texturas a las
 |                                        ![](Resources/02_crop.png)                                         |
 |:---------------------------------------------------------------------------------------------------------:|
 | *Figura X: Render de tres esferas de diferentes colores sobre una superficie blanca. Materiales difusos.* |
+![](Resources/lambertian.svg)
 
 2. Material metálico: Al contrario que el material difuso, el material metálico refleja la luz en el mismo ángulo en dirección opuesta respecto al ángulo de incidencia. Este efecto produce un reflejo de la misma manera que un espejo. Este material también cuenta con un parámetro que controla la borrosidad (o fuzziness, en inglés) del reflejo. En la figura X se puede observar el efecto espejo del material junto a el parámetro de borrosidad.
 
 |                                                                                 ![](Resources/03_crop.png)                                                                                  |
 |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | *Figura X: Render de tres esferas de diferentes colores sobre una superficie gris. Materiales metálicos con distinta borrosidad: 0.1 (izquierda), 0 (centro y superficie) y 0.5 (derecha).* |
+![](Resources/metalic.svg)
 
 3. Material dieléctrico: Este material representa materiales transparentes como agua y cristal. Cuando la luz incide sobre el material, se divide en luz reflejada (como el material metálico) y en luz refractada. La reflectividad se describe según las ecuaciones de Fresnel y la refracción según la ley de Snell. Este material también cuenta con un parámetro que controla el índice de refracción. En la figura X se puede apreciar el efecto de distintos índices de refracción. Tambien se puede observar la luz refractada en la bola de la derecha debido a un índice de refracción elevado. Cabe estacar que las bolas de materiales dieléctricos no tienen sombra, se puede comprobar que ese es el caso observando una bola de cristal en un día nublado.
 
 |                                                                                                              ![](Resources/04_crop.png)                                                                                                               |
 |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | *Figura X: Render de tres bolas con un material dieléctrico y tres esferas de distintos colores, sobre una superficie gris. Los indices de refracción de las tres bolas son: 1.3 (agua, izquierda), 1.5 (cristal, centro) y 2.4 (diamante, derecha).* |
+
+![](Resources/dielectric.svg)
 
 También existen otras formas mas completas de definir materiales como las descritas en los modelos de [Disney](https://media.disneyanimation.com/uploads/production/publication_asset/48/asset/s2012_pbs_disney_brdf_notes_v3.pdf), [Autodesk](https://autodesk.github.io/standard-surface/#closures) o [OpenPBR](https://academysoftwarefoundation.github.io/OpenPBR/).
 
@@ -143,6 +145,7 @@ El primer componente del trazador de rayos es la cámara, encargada de _lanzar_ 
 
 > Imagen de cámara similar a: [pbr figure 1.2 y figure 1.3](https://pbr-book.org/4ed/Introduction/Photorealistic_Rendering_and_the_Ray-Tracing_Algorithm#CamerasandFilm) y/o lente de RTIOW
 
+![](Resources/camera.svg)
 
 La camara se define mediante su centro y su viewport. El centro de la camara es el punto (o el centro del disco en el caso de simular una lente) desde el cuál se originan los rayos. El viewport es un rectángulo bidimensional discretizado en píxeles utilizado para proyectar la escena. Cada pixel del viewport se corresponde con el de la imagen de salida por lo que se podría hacer un símil con el sensor de la cámara. Cada píxel indica la dirección de un rayo y una vez trazado el rayo se almacena el color resultante en la imagen de salida. Se puede obtener mayor calidad perceptual al elegir un punto aleatorio dentro del pixel en vez de su centro y se puede reducir el aliasing y aumentar la calidad al mediar el resultado de varias muestras del pixel.
 
