@@ -168,13 +168,11 @@ Una vez lanzado el rayo se comprueba si intersecta con algún objeto de la escen
 
 > En este apartado se explicará el proceso de modificación del trazador de rayos descrito en el apartado anterior para el cálculo de la amplitud y la fase de las ondas electromagnéticas. (SLM, nubes de puntos, obtención de la amplitud y fase) (Referencias a los estudios) (Imágenes de los resultados, preferiblemente con poco ruido)
 
-> El nombre de la sección suena muy complicado
-
 Una vez implementado el trazador de rayos para la generación de imágenes, se ha modificado para generar hologramas. Las principales modificaciones realizadas han sido el proceso de lanzar rayos y el cambio del calculo del color del rayo a la amplitud y fase.
 
 Para obtener la amplitud y la fase de cada pixel \[del SLM] se ha de calcular respecto a cada punto de la escena a muestrear, siendo los mismos puntos para cada pixel por razones relacionadas con la coherencia. Para determinar estos puntos se ha utilizado la técnica de la nube de puntos, según la cual se crea una lista de puntos en las superficies de los objetos.
 
-
+![](Resources/slm.svg)
 
 > Mencionar cálculos
 
