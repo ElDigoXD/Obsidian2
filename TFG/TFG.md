@@ -42,13 +42,13 @@ Entre los algoritmos clasificados se encuentran los dos que se van a utilizar en
 
 * Nube de puntos: Esta técnica consiste en la suma de todas las funciones de dispersion de puntos (PSFs), en el plano del holograma, que emanan de una colección de puntos luminosos. Las principales limitaciones de esta técnica son (1) la falta de soporte de efectos básicos como la oclusión y el sombreado; y (2) el alto coste computacional, aunque el algoritmo es altamente paralelizable \[[3](https://opg.optica.org/ol/viewmedia.cfm?uri=ol-46-9-2188&html=true)]. 
 
-|                                ![](tecnica_nube_puntos.png)                                 |
+|                                ![](Resources/tecnica_nube_puntos.png)                                 |
 |:-------------------------------------------------------------------------------------------:|
 | Figura X: Diagrama del algoritmo de la nube de puntos. Fuente: (Blinder et al., 2022) \[2]. |
 
 * Trazado de rayos: Es una técnica para modelar el transporte de la luz basada en el seguimiento de rayos de luz individuales que rebotan en la escena e interactúan con materiales, calculando con precisión la cantidad de luz alcanzando cada píxel de la cámara virtual. Esta técnica puede aprovecharse en CGH para modelar también el transporte de la luz. Sin embargo, no puede utilizarse directamente, ya que la holografía se basa fundamentalmente en ondas, lo que difiere sustancialmente de los modelos basados en rayos. Uno de los principales problemas es la necesidad de obtener un continuo de puntos de vista y otro problema es la falta de coherencia de fase de la luz. Estos dos problemas hacen que los métodos basados en el trazado de rayos han de ser adaptados o combinados con otros algoritmos para ser utilizados efectivamente \[2].
 
-|                                                                               ![](tecnica_raytracing_coherente.jpg)                                                                                |
+|                                                                               ![](Resources/tecnica_raytracing_coherente.jpg)                                                                                |
 |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | Figura X: Diagrama mostrando la diferencia entre las técnicas de nube de puntos (a) y el trazado de rayos (b). Se puede observar la incoherencia del segundo. Fuente: (Blinder et al., 2021) \[3]. |
 
@@ -91,6 +91,7 @@ Una vez definida la geometría de la escena, es necesario aplicar texturas a las
 |                                        ![](Resources/02_crop.png)                                         |
 |:---------------------------------------------------------------------------------------------------------:|
 | *Figura X: Render de tres esferas de diferentes colores sobre una superficie blanca. Materiales difusos.* |
+
 ![](Resources/lambertian.svg)
 
 2. Material metálico: Al contrario que el material difuso, el material metálico refleja la luz en el mismo ángulo en dirección opuesta respecto al ángulo de incidencia. Este efecto produce un reflejo de la misma manera que un espejo. Este material también cuenta con un parámetro que controla la borrosidad (o fuzziness, en inglés) del reflejo. En la figura X se puede observar el efecto espejo del material junto a el parámetro de borrosidad.
@@ -98,6 +99,7 @@ Una vez definida la geometría de la escena, es necesario aplicar texturas a las
 |                                                                                 ![](Resources/03_crop.png)                                                                                  |
 |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | *Figura X: Render de tres esferas de diferentes colores sobre una superficie gris. Materiales metálicos con distinta borrosidad: 0.1 (izquierda), 0 (centro y superficie) y 0.5 (derecha).* |
+
 ![](Resources/metalic.svg)
 
 3. Material dieléctrico: Este material representa materiales transparentes como agua y cristal. Cuando la luz incide sobre el material, se divide en luz reflejada (como el material metálico) y en luz refractada. La reflectividad se describe según las ecuaciones de Fresnel y la refracción según la ley de Snell. Este material también cuenta con un parámetro que controla el índice de refracción. En la figura X se puede apreciar el efecto de distintos índices de refracción. Tambien se puede observar la luz refractada en la bola de la derecha debido a un índice de refracción elevado. Cabe estacar que las bolas de materiales dieléctricos no tienen sombra, se puede comprobar que ese es el caso observando una bola de cristal en un día nublado.
