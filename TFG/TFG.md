@@ -42,14 +42,14 @@ Entre los algoritmos clasificados se encuentran los dos que se van a utilizar en
 
 * Nube de puntos: Esta técnica consiste en la suma de todas las funciones de dispersion de puntos (PSFs), en el plano del holograma, que emanan de una colección de puntos luminosos. Las principales limitaciones de esta técnica son (1) la falta de soporte de efectos básicos como la oclusión y el sombreado; y (2) el alto coste computacional, aunque el algoritmo es altamente paralelizable \[[3](https://opg.optica.org/ol/viewmedia.cfm?uri=ol-46-9-2188&html=true)]. 
 
-|                                ![](Resources/tecnica_nube_puntos.png)                                 |
-|:-------------------------------------------------------------------------------------------:|
+| ![](Resources/tecnica_nube_puntos.png) |
+|:---:|
 | Figura X: Diagrama del algoritmo de la nube de puntos. Fuente: (Blinder et al., 2022) \[2]. |
 
 * Trazado de rayos: Es una técnica para modelar el transporte de la luz basada en el seguimiento de rayos de luz individuales que rebotan en la escena e interactúan con materiales, calculando con precisión la cantidad de luz alcanzando cada píxel de la cámara virtual. Esta técnica puede aprovecharse en CGH para modelar también el transporte de la luz. Sin embargo, no puede utilizarse directamente, ya que la holografía se basa fundamentalmente en ondas, lo que difiere sustancialmente de los modelos basados en rayos. Uno de los principales problemas es la necesidad de obtener un continuo de puntos de vista y otro problema es la falta de coherencia de fase de la luz. Estos dos problemas hacen que los métodos basados en el trazado de rayos han de ser adaptados o combinados con otros algoritmos para ser utilizados efectivamente \[2].
 
-|                                                                               ![](Resources/tecnica_raytracing_coherente.jpg)                                                                                |
-|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| ![](Resources/tecnica_raytracing_coherente.jpg) |
+|:---:|
 | Figura X: Diagrama mostrando la diferencia entre las técnicas de nube de puntos (a) y el trazado de rayos (b). Se puede observar la incoherencia del segundo. Fuente: (Blinder et al., 2021) \[3]. |
 
 En \[3] se propone un método híbrido que toma los mejores aspectos de los métodos de nube de puntos y del trazado de rayos. En vez de calcular directamente el campo de luz en el plano del holograma, se calcula la intensidad en cada punto de la nube de puntos mediante trazado de rayos, y se calcula la PSF con esa intensidad. De este modo se consiguen efectos de iluminación realistas, sin comprometer la coherencia de la fase, lo que da lugar a vistas continuas y señales de profundidad precisas.
@@ -86,34 +86,42 @@ Utilizando la primitiva del triángulo se pueden representar mallas, definidas p
 
 Una vez definida la geometría de la escena, es necesario aplicar texturas a las primitivas. Las texturas que se han utilizado no siguen el significado tradicional de imágenes bidimensionales mapeadas sobre la superficie de la geometría, si no que se emplean distintos tipos de materiales, detallados a continuación:
 
-1. Material difuso (lambertiano): Este material dispersa la luz siguiendo una distribución independiente al ángulo de incidencia y proporcional al coseno del ángulo formado entre la normal de la superficie y la dirección de dispersión. Esta distribución viene dada por la ley del coseno de Lambert. El color y la intensidad de la luz se ven modificados por el color (o albedo) del material. Este material podría describirse como mate. En la figura X se puede apreciar el comportamiento del material difuso. 
+1. Material difuso (lambertiano): Este material dispersa la luz siguiendo una distribución independiente al ángulo de incidencia y proporcional al coseno del ángulo formado entre la normal de la superficie y la dirección de dispersión. Esta distribución viene dada por la ley del coseno de Lambert. El color y la intensidad de la luz se ven modificados por el color (o albedo) del material. Este material podría describirse como mate. En la figura X se puede apreciar el comportamiento del material difuso y en la figura X se muestra un diagrama de la reflexión difusa lambertiana.
 
-|                                        ![](Resources/02_crop.png)                                         |
-|:---------------------------------------------------------------------------------------------------------:|
+| ![](Resources/02_crop.png) |
+|:---:|
 | *Figura X: Render de tres esferas de diferentes colores sobre una superficie blanca. Materiales difusos.* |
 
-![](Resources/lambertian.svg)
+| ![](Resources/lambertian.svg) |
+|:---:|
+| *Figura X: Diagrama de la dispersión de un material difuso lambertiano. En negro, el rayo de luz incidente, en rojo, la distribución de la dirección e intensidad de la dispersión.* |
 
-2. Material metálico: Al contrario que el material difuso, el material metálico refleja la luz en el mismo ángulo en dirección opuesta respecto al ángulo de incidencia. Este efecto produce un reflejo de la misma manera que un espejo. Este material también cuenta con un parámetro que controla la borrosidad (o fuzziness, en inglés) del reflejo. En la figura X se puede observar el efecto espejo del material junto a el parámetro de borrosidad.
+2. Material metálico: Al contrario que el material difuso, el material metálico refleja la luz en el mismo ángulo en dirección opuesta respecto al ángulo de incidencia (véase figura X). Este efecto produce un reflejo de la misma manera que un espejo. Este material también cuenta con un parámetro que controla la borrosidad (o fuzziness, en inglés) del reflejo. En la figura X se puede observar el efecto espejo del material junto a el parámetro de borrosidad.
 
-|                                                                                 ![](Resources/03_crop.png)                                                                                  |
-|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| ![](Resources/03_crop.png) |
+|:---:|
 | *Figura X: Render de tres esferas de diferentes colores sobre una superficie gris. Materiales metálicos con distinta borrosidad: 0.1 (izquierda), 0 (centro y superficie) y 0.5 (derecha).* |
 
-![](Resources/metalic.svg)
+| ![](Resources/metalic.svg) |
+|:---:|
+| *Figura X: Diagrama de la reflexión de un material metálico sin borrosidad. Rayo de incidencia en negro, rayo reflejado en rojo y vector normal a la superficie en azul.* |
 
 3. Material dieléctrico: Este material representa materiales transparentes como agua y cristal. Cuando la luz incide sobre el material, se divide en luz reflejada (como el material metálico) y en luz refractada. La reflectividad se describe según las ecuaciones de Fresnel y la refracción según la ley de Snell. Este material también cuenta con un parámetro que controla el índice de refracción. En la figura X se puede apreciar el efecto de distintos índices de refracción. Tambien se puede observar la luz refractada en la bola de la derecha debido a un índice de refracción elevado. Cabe estacar que las bolas de materiales dieléctricos no tienen sombra, se puede comprobar que ese es el caso observando una bola de cristal en un día nublado.
 
-|                                                                                                              ![](Resources/04_crop.png)                                                                                                               |
-|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| ![](Resources/04_crop.png) |
+|:---:|
 | *Figura X: Render de tres bolas con un material dieléctrico y tres esferas de distintos colores, sobre una superficie gris. Los indices de refracción de las tres bolas son: 1.3 (agua, izquierda), 1.5 (cristal, centro) y 2.4 (diamante, derecha).* |
 
-![](Resources/dielectric.svg)
+| ![](Resources/dielectric.svg) |
+|:---:|
+| *Figura X: Diagrama de la refracción de un rayo de luz al atravesar la superficie de un material dieléctrico. Rayo de incidencia en negro, rayo refractado en rojo.* |
+
+> Quizás añadir reflejo al diagrama.
 
 También existen otras formas mas completas de definir materiales como las descritas en los modelos de [Disney](https://media.disneyanimation.com/uploads/production/publication_asset/48/asset/s2012_pbs_disney_brdf_notes_v3.pdf), [Autodesk](https://autodesk.github.io/standard-surface/#closures) o [OpenPBR](https://academysoftwarefoundation.github.io/OpenPBR/).
 
-|                                                                      ![](Resources/01_materials.png)                                                                       |
-|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| ![](Resources/01_materials.png) |
+|:---:|
 | *Figura X: Render demostrando los distintos materiales. Basado en el render de la figura X-1 (superficie y esfera azul metálicas con borrosidad 0 y 0.3 respectivamente).* |
 
 #### 3.1.3. Iluminación
@@ -123,19 +131,25 @@ La ultima sección de la definición de la escena virtual es la iluminación. La
 El cielo ilumina de manera uniforme la escena mientras que las fuentes de luz puntuales siguen el modelo de reflexión de Blinn-Phong, que describe la forma en la que una superficie refleja la luz como una combinación de la iluminación difusa y la iluminación especular. No se incluye el término ambiental del modelo ya que se utiliza el cielo.
 
 
-|                                                                                                                                 ![](Resources/05_agg.png)                                                                                                                                  |
-|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| Figura X: Render de tres esferas con iluminación puntual e iluminación ambiente, separado en sus componentes: Especular (superior izquierda), difuso por punto de luz (superior derecha), difuso por iluminación ambiente (inferior izquierda) y componentes agregados (inferior derecha). |
+| ![](Resources/05_agg.png) |
+|:---:|
+| *Figura X: Render de tres esferas con iluminación puntual e iluminación ambiente, separado en sus componentes: Especular (superior izquierda), difuso por punto de luz (superior derecha), difuso por iluminación ambiente (inferior izquierda) y componentes agregados (inferior derecha).* |
 
 > definición de la escena para cgh
+
 ### 3.2. Generación de hologramas digitales (DH)
+
+> Cambiar título. Añadir introducción.
 
 #### 3.2.1. Trazado de rayos
 
 > En este apartado se detallará el algoritmo de trazado de rayos utilizado para generar imágenes, explicando cómo se simulan los rayos de luz desde la fuente hasta el detector y las principales diferencias con la realidad. (cámara, generación de rayos, muestreo, intersección, interacción con materiales, número máximo de rebotes, iluminación) (Referencias a los libros) (Imágenes de los resultados, la del final del primer libro y alguna malla)
 
-
 En este trabajo concretamente se utiliza el algoritmo de trazado de caminos (o path tracing, en inglés), el cual simula más efectos que el trazado de rayos convencional gracias al uso de simulaciones de Monte Carlo.
+
+| ![](Resources/bounces.svg) |
+|:---:|
+| *Figura X: Diagrama que muestra los caminos de dos rayos de luz en una escena sencilla.* |
 
 A continuación se detallará el el funcionamiento de la implementación realizada en este trabajo.
 
@@ -145,25 +159,27 @@ Como se ha mencionado anteriormente el algoritmo se ha implementado en el lengua
 
 El primer componente del trazador de rayos es la cámara, encargada de _lanzar_ los rayos ya que la propagación desde la fuente de luz hasta la cámara es equivalente a la propagación desde la cámara hasta la fuente de luz. La camara se basa en una cámara estenopeica (o camara oscura) sin lente aunque también es capaz de simular una lente para obtener el efecto de profundidad de campo.
 
-> Imagen de cámara similar a: [pbr figure 1.2 y figure 1.3](https://pbr-book.org/4ed/Introduction/Photorealistic_Rendering_and_the_Ray-Tracing_Algorithm#CamerasandFilm) y/o lente de RTIOW
+| ![](Resources/camera.svg) |
+|:---:|
+| *Figura X: Diagrama del modelo de cámara utilizado, basado en una cámara estenopeica.* |
 
-![](Resources/camera.svg)
+La camara se define mediante su centro y su viewport (véase Figura X). El centro de la camara es el punto (o el centro del disco en el caso de simular una lente) desde el cuál se originan los rayos. El viewport es un rectángulo bidimensional discretizado en píxeles utilizado para proyectar la escena. Cada pixel del viewport se corresponde con el de la imagen de salida por lo que se podría hacer un símil con el sensor de la cámara. Cada píxel indica la dirección de un rayo (véase Figura X) y una vez trazado el rayo se almacena el color resultante en la imagen de salida. Se puede obtener mayor calidad perceptual al elegir un punto aleatorio dentro del pixel en vez de su centro y se puede reducir el aliasing y aumentar la calidad al mediar el resultado de varias muestras del pixel (véase Figura X).
 
-La camara se define mediante su centro y su viewport. El centro de la camara es el punto (o el centro del disco en el caso de simular una lente) desde el cuál se originan los rayos. El viewport es un rectángulo bidimensional discretizado en píxeles utilizado para proyectar la escena. Cada pixel del viewport se corresponde con el de la imagen de salida por lo que se podría hacer un símil con el sensor de la cámara. Cada píxel indica la dirección de un rayo y una vez trazado el rayo se almacena el color resultante en la imagen de salida. Se puede obtener mayor calidad perceptual al elegir un punto aleatorio dentro del pixel en vez de su centro y se puede reducir el aliasing y aumentar la calidad al mediar el resultado de varias muestras del pixel.
+| ![](Resources/camera_rays.svg) |
+|:---:|
+| *Figura X: Diagrama del funcionamiento de la cámara en el algoritmo de trazado de rayos. Los rayos comienzan en el centro de la cámara en dirección al centro de cada pixel del viewport.* |
 
-> Imagen centro-viewport con pixeles (similar a figura 3 RTIOW)
 
-![](Resources/camera_rays.svg)
-
-![](Resources/camera_samples.svg)
+| ![](Resources/camera_samples.svg) |
+|:---:|
+| *Figura X: Diagrama del muestreo aleatorio realizado a nivel de píxel. Utilizado para reducir el aliasing y aumentar la calidad.* |
 
 Una vez lanzado el rayo se comprueba si intersecta con algún objeto de la escena iterando sobre ellos y se selecciona el objeto intersectado más cercano. De la intersección se obtiene el punto, la distancia respecto al origen del rayo, la normal de la superficie y el material del objeto. Con esta información, para la iluminación ambiente, se puede calcular la atenuación y la dirección del rayo dispersado dependiendo del material. Este proceso se repite hasta que el rayo dispersado no intersecta ningún objeto (o "escapa") y se atenúa con el color del cielo o, si alcanza el numero máximo de rebotes definido por el trazador de rayos, la atenuación sería total. Y para la iluminación puntual, siguiendo la misma ruta del rayo de la iluminación ambiente, se comprueba si el punto es visible para la fuente de luz trazando un rayo nuevo y, si lo es, se calcula la iluminación especular y la iluminación difusa, esta última en el caso de que el material sea difuso. 
 
-![](Resources/bounces.svg)
 
-|            ![](Resources/06_end_book_1.png)            |
-| :----------------------------------------------------: |
-| Figura X: Render de la escena final descrita en RTIOW. |
+| ![](Resources/06_end_book_1.png) |
+|:---:|
+| *Figura X: Render de la escena final descrita en RTIOW.* |
 
 
 #### 3.2.2. Calculo de amplitud y fase: aproximación escalar de la propagación de ondas electromagnéticas
@@ -172,9 +188,11 @@ Una vez lanzado el rayo se comprueba si intersecta con algún objeto de la escen
 
 Una vez implementado el trazador de rayos para la generación de imágenes, se ha modificado para generar hologramas. Las principales modificaciones realizadas han sido el proceso de lanzar rayos y el cambio del calculo del color del rayo a la amplitud y fase.
 
-Para obtener la amplitud y la fase de cada pixel \[del SLM] se ha de calcular respecto a cada punto de la escena a muestrear, siendo los mismos puntos para cada pixel por razones relacionadas con la coherencia. Para determinar estos puntos se ha utilizado la técnica de la nube de puntos, según la cual se crea una lista de puntos en las superficies de los objetos.
+Para obtener la amplitud y la fase de cada pixel \[del SLM] se ha de calcular respecto a cada punto de la escena a muestrear, siendo los mismos puntos para cada pixel por razones relacionadas con la coherencia. Para determinar estos puntos se ha utilizado la técnica de la nube de puntos, según la cual se crea una lista de puntos en las superficies de los objetos (véase Figura X). 
 
-![](Resources/slm.svg)
+| ![](Resources/slm.svg) |
+|:---:|
+| *Figura X: Diagrama del modelo de camara utilizado para generar hologramas. Arriba, creación de la nube de puntos; abajo, desde cada pixel del SLM se lanza un rayo en dirección a cada punto de la nube de puntos.* |
 
 > Mencionar cálculos
 
