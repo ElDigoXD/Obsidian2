@@ -7,9 +7,7 @@ La holografía es una técnica que permite capturar y reconstruir el campo de on
 
 Los hologramas a mostrar se pueden obtener capturando el frente de ondas que viene de un objeto real, proceso análogo a realizar una fotografía, o generando el holograma mediante un computador, análogo a la generación de images por computador. Uno de los mayores desafíos de la generación de hologramas por computador (CGH) es generar hologramas realistas en tiempos computacionales aceptables \[1].
 
-> Falta modelado de la escena.
-
-En este trabajo de final de grado se implementa un trazador de rayos para generar imágenes (2D) por computador el cuál simula el comportamiento de los rayos de luz basado en la física (Physically Based Ray Tracing o PBRT, en inglés). Además se implementa un trazador de rayos para generar hologramas (3D) por computador que hace uso de la técnica de la nube de puntos. Por último, se visualizan los hologramas generados, tanto por simulación como en el laboratorio.
+En este trabajo de final de grado se implementa un trazador de rayos para generar imágenes (2D) por computador el cuál simula el comportamiento de los rayos de luz basado en la física (Physically Based Ray Tracing o PBRT, en inglés). Además se implementa un trazador de rayos para generar hologramas (3D) por computador que hace uso de la técnica de la nube de puntos. Por último, se visualizan los hologramas generados a partir de una escena virtual, tanto por simulación como en el laboratorio.
 
 Dado que la exigencia computacional de este problema es muy alta y mucho mayor que las aplicaciones tradicionales de la computación gráfica, este proyecto propone una solución adecuada para abordar este problema que considera la arquitectura del software, los algoritmos y la alta paralelización del problema. Esta última, tanto en CPU como en GPU utilizando los lenguajes C++ y CUDA.
 
@@ -57,11 +55,8 @@ En \[3] se propone un método híbrido que toma los mejores aspectos de los mét
 
 La naturaleza del algoritmo de trazado de rayos permite que pueda ser acelerado mediante paralelización, ya que los rayos son independientes unos de los otros. En \[3] se paraleliza en GPUs mediante CUDA y OptiX.
 
-PSF: La función de dispersión de puntos (PSF) describe respuesta de un sistema de imagen a un objeto o fuente puntual. (En este caso describe la propagación de la luz desde el punto hasta el sensor/cámara) \[[wp](https://en.wikipedia.org/wiki/Point_spread_function)].
-
-
 > convolución,
-> Reordenar y definir amplitud - fase.
+> Reordenar y definir amplitud y fase.
 
 ## 3. Proceso de síntesis de escenas virtuales en 3D mediante hologramas digitales
 
