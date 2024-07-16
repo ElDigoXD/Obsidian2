@@ -1,31 +1,27 @@
 
 ## 1. Introducción y objetivos
 
-> En este apartado se establecerá el contexto y la motivación del trabajo, explicando la importancia de la síntesis de hologramas digitales generados por computador (CGHs) y el papel del trazado de rayos en el proceso. También se definirán los objetivos del TFG, incluyendo la creación de escenas sintéticas, la creación de un trazador de rayos clásico, su adaptación para generar hologramas y la propagación del frente de ondas para validar los resultados.
+En este apartado se establece el contexto y la motivación del trabajo, explicando la importancia de la síntesis de hologramas digitales generados por computador y el papel del algoritmo de trazado de rayos en el proceso. También se definen los objetivos, incluyendo la creación de escenas sintéticas, la creación de un trazador de rayos clásico, su adaptación para generar hologramas y la propagación del frente de ondas para validar los resultados.
 
+La holografía es una técnica que permite capturar y reconstruir el campo de ondas completo de la luz. \[Goodman] La holografía digital se utiliza hoy en día para varios propósitos, entre los que se encuentran los sistemas de pantallas tridimensionales (3D) \[[1](https://www.sciencedirect.com/science/article/pii/S0923596518304855)].  Las pantallas 3D holográficas permiten reproducir todas las señales de profundidad visuales naturales conocidas, como la oclusión, la acomodación del ojo, la convergencia y la estereopsis \[[2](https://www.light-am.com/article/doi/10.37188/lam.2022.035)]. Todas las señales de profundidad pueden observarse a simple vista en las pantallas holográficas, por lo que, en teoría, pueden reproducir una representación tridimensional fiel de cualquier escena sin restricciones en cuanto al contenido de la misma.
 
-La holografía es una técnica que permite capturar y reconstruir el campo de ondas completo de la luz. La holografía digital se utiliza hoy en día para varios propósitos, entre los que se encuentran los sistemas de pantallas tridimensionales (3D) \[[1](https://www.sciencedirect.com/science/article/pii/S0923596518304855)].  Las pantallas 3D holográficas permiten reproducir todas las señales de profundidad visuales naturales conocidas, como la oclusión, la acomodación del ojo, la convergencia y la estereopsis. Todas las señales de profundidad pueden observarse a simple vista en las pantallas holográficas, por lo que, en teoría, pueden reproducir una representación tridimensional fiel de cualquier escena sin restricciones en cuanto al contenido de la misma \[[2](https://www.light-am.com/article/doi/10.37188/lam.2022.035)].
-
-Los hologramas a mostrar se pueden obtener capturando el frente de ondas que viene de un objeto real, proceso análogo a realizar una fotografía, o generando el holograma mediante un computador, análogo a la generación de images por computador. Uno de los mayores desafíos de la generación de hologramas por computador (CGH) es generar hologramas realistas en tiempos computacionales aceptables \[1.4].
+Los hologramas a mostrar se pueden obtener capturando el frente de ondas que viene de un objeto real, proceso análogo a realizar una fotografía, o generando el holograma mediante un computador, análogo a la generación de images por computador. Uno de los mayores desafíos de la generación de hologramas por computador (CGH) es generar hologramas realistas en tiempos computacionales aceptables \[1].
 
 > Falta modelado de la escena.
 
 En este trabajo de final de grado se implementa un trazador de rayos para generar imágenes (2D) por computador el cuál simula el comportamiento de los rayos de luz basado en la física (Physically Based Ray Tracing o PBRT, en inglés). Además se implementa un trazador de rayos para generar hologramas (3D) por computador que hace uso de la técnica de la nube de puntos. Por último, se visualizan los hologramas generados, tanto por simulación como en el laboratorio.
 
-Dado que la exigencia computacional de este problema es muy alta y mucho mayor que las aplicaciones tradicionales de la computación gráfica, este proyecto propone una solución adecuada para abordar este problema que tiene en cuenta la arquitectura del software, los algoritmos y la alta paralelización del problema. En el trabajo se tiene en cuenta la paralelización tanto en CPU como en GPU utilizando los lenguajes C++ y CUDA.
+Dado que la exigencia computacional de este problema es muy alta y mucho mayor que las aplicaciones tradicionales de la computación gráfica, este proyecto propone una solución adecuada para abordar este problema que considera la arquitectura del software, los algoritmos y la alta paralelización del problema. Esta última, tanto en CPU como en GPU utilizando los lenguajes C++ y CUDA.
 
-> quitar paralelización duplicada. 
 ## 2. Estado del arte
 
 La generación de imágenes por computador (Computer-Generated Imagery o CGI, en inglés) es un campo de la computación gráfica bien estudiado y es utilizado en una gran variedad de areas, como el cine y los videojuegos. Consiste, en esencia, en capturar una escena virtual en un plano, para su posterior visualización.
 
-Una de las técnicas más utilizadas en CGI es el trazado de rayos. El libro  [Ray Tracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)  detalla tanto la teoría como la implementación y el libro [Physically Based Rendering: From Theory To Implementation](https://pbr-book.org/4ed/contents) profundiza en ambos.
+Una de las técnicas más utilizadas en CGI es el trazado de rayos. En la literatura se pueden encontrar libros especializados que abordan tanto la teoría como la implementación con distintos niveles de profundidad. \[RTIO] \[PBR]
 
->Existe en la literatura ..., no mencionar los libros  
+El trazado de rayos (o ray tracing, en inglés) es una técnica para simular el comportamiento de la luz para sintetizar escenas virtuales. Se considera una técnica computacionalmente costosa, por lo que es utilizada principalmente para renderización offline (no en tiempo real).
 
-El trazado de rayos (o ray tracing, en inglés) es una técnica para simular el comportamiento de la luz para sintetizar escenas virtuales. Se considera una técnica computacionalmente costosa, por lo que es utilizada principalmente para crear imágenes generadas por computador (CGI) estáticas y efectos visuales.
-
-Según el libro [Physically Based Rendering: From Theory To Implementation](https://pbr-book.org/4ed/contents) un trazador de rayos completo ha de simular al menos los siguientes objetos y fenómenos: << referencua >>
+Un trazador de rayos completo ha de simular al menos los siguientes objetos y fenómenos \[PBR]: 
 
 + Camaras: El modelo de una camara determina cómo y desde dónde la escena es observada, incluyendo como una imagen de la escena es recogida por un sensor.
 + Intersecciones rayo-objeto: Es necesario conocer precisamente cuándo y dónde un rayo intersecta un objeto geométrico, además de determinar algunas propiedades del objeto en el punto de intersección.
@@ -39,36 +35,33 @@ La generación de hologramas por computador (Computer-Generated Holography o CGH
 
 > se ha de tener en cuenta que la naturaleza de la luz tiene amplitud y fase... ecuación
 
-En el estudio \[2] se ofrece una vision general del estado del arte en CGH, una clasificación de los algoritmos y diferentes técnicas de aceleración, incluyendo soluciones hardware dedicadas. 
+En el estudio \[2] se ofrece una vision general del estado del arte en CGH, una clasificación de los algoritmos y diferentes técnicas de aceleración.
 
 Entre los algoritmos clasificados se encuentran los dos que se van a utilizar en este trabajo:
 
-* Nube de puntos: Esta técnica consiste en la suma de todas las funciones de dispersion de puntos (PSFs), en el plano del holograma, que emanan de una colección de puntos luminosos. Se entiende la psf..., Las principales limitaciones de esta técnica son (1) la falta de soporte de efectos básicos como la oclusión y el sombreado; y (2) el alto coste computacional, aunque el algoritmo es altamente paralelizable \[[3](https://opg.optica.org/ol/viewmedia.cfm?uri=ol-46-9-2188&html=true)]. 
+* Nube de puntos: Esta técnica consiste en la suma de todas las funciones de dispersion de puntos (PSFs), en el plano del holograma, que emanan de una colección de puntos luminosos. Se entiende la PSF como la función que describe respuesta de un sistema de imagen a un objeto o fuente puntual. Se puede observar en la figura X la función de dispersión de un punto de la escena evaluada en un plano. Las principales limitaciones de esta técnica son (1) la falta de soporte de efectos básicos como la oclusión y el sombreado; y (2) el alto coste computacional, aunque el algoritmo es altamente paralelizable \[[3](https://opg.optica.org/ol/viewmedia.cfm?uri=ol-46-9-2188&html=true)]. 
 
 |                           ![](Resources/tecnica_nube_puntos.png)                            |
 | :-----------------------------------------------------------------------------------------: |
 | Figura X: Diagrama del algoritmo de la nube de puntos. Fuente: (Blinder et al., 2022) \[2]. |
 
-> referencia a la figura
-
 * Trazado de rayos: Es una técnica para modelar el transporte de la luz basada en el seguimiento de rayos de luz individuales que rebotan en la escena e interactúan con materiales, calculando con precisión la cantidad de luz alcanzando cada píxel de la cámara virtual. Esta técnica puede aprovecharse en CGH para modelar también el transporte de la luz. Sin embargo, no puede utilizarse directamente, ya que la holografía se basa fundamentalmente en ondas, lo que difiere sustancialmente de los modelos basados en rayos. Uno de los principales problemas es la necesidad de obtener un continuo de puntos de vista y otro problema es la falta de coherencia de fase de la luz. Estos dos problemas hacen que los métodos basados en el trazado de rayos han de ser adaptados o combinados con otros algoritmos para ser utilizados efectivamente \[2].
 
+> mover imagen o eliminarla
 
 |                                                                          ![](Resources/tecnica_raytracing_coherente.jpg)                                                                           |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | Figura X: Diagrama mostrando la diferencia entre las técnicas de nube de puntos (a) y el trazado de rayos (b). Se puede observar la incoherencia del segundo. Fuente: (Blinder et al., 2021) \[3]. |
 
-> mover imágen
-
-En \[3] se propone un método híbrido que toma los mejores aspectos de los métodos de nube de puntos y del trazado de rayos. En vez de calcular directamente el campo de luz en el plano del holograma, se calcula la intensidad en cada punto de la nube de puntos mediante trazado de rayos, y se calcula la PSF con esa intensidad. De este modo se consiguen efectos de iluminación realistas, sin comprometer la coherencia de la fase, lo que da lugar a vistas continuas y señales de profundidad precisas.
+En \[3] se propone un método híbrido que toma los mejores aspectos de los métodos de nube de puntos y del trazado de rayos. En vez de calcular directamente el campo de luz en el plano del holograma, se calcula la intensidad en cada punto de la nube de puntos de la escena mediante trazado de rayos, y se calcula la PSF con esa intensidad. De este modo se consiguen efectos de iluminación realistas, sin comprometer la coherencia de la fase, lo que da lugar a vistas continuas y señales de profundidad precisas.
 
 La naturaleza del algoritmo de trazado de rayos permite que pueda ser acelerado mediante paralelización, ya que los rayos son independientes unos de los otros. En \[3] se paraleliza en GPUs mediante CUDA y OptiX.
 
 PSF: La función de dispersión de puntos (PSF) describe respuesta de un sistema de imagen a un objeto o fuente puntual. (En este caso describe la propagación de la luz desde el punto hasta el sensor/cámara) \[[wp](https://en.wikipedia.org/wiki/Point_spread_function)].
 
 
-> convolucion, gpu
-> reordenar y definir todos los conceptos., orden de magnitud \[3]
+> convolución,
+> Reordenar y definir amplitud - fase.
 
 ## 3. Proceso de síntesis de escenas virtuales en 3D mediante hologramas digitales
 
@@ -124,19 +117,19 @@ Una vez definida la geometría de la escena, es necesario aplicar texturas a las
 |:---:|
 | *Figura X: Diagrama de la refracción de un rayo de luz al atravesar la superficie de un material dieléctrico. Rayo de incidencia en negro, rayo refractado en rojo.* |
 
-> Quizás añadir reflejo al diagrama.
+> Añadir reflejo al diagrama.
 
 También existen otras formas mas completas de definir materiales como las descritas en los modelos de [Disney](https://media.disneyanimation.com/uploads/production/publication_asset/48/asset/s2012_pbs_disney_brdf_notes_v3.pdf), [Autodesk](https://autodesk.github.io/standard-surface/#closures) o [OpenPBR](https://academysoftwarefoundation.github.io/OpenPBR/).
 
-| ![](Resources/01_materials.png) |
-|:---:|
-| *Figura X: Render demostrando los distintos materiales. Basado en el render de la figura X-1 (superficie y esfera azul metálicas con borrosidad 0 y 0.3 respectivamente).* |
+|                                                                     ![](Resources/01_materials.png)                                                                      |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| *Figura X: Render demostrando los distintos materiales. Basado en el render de la figura X (superficie y esfera azul metálicas con borrosidad 0 y 0.3 respectivamente).* |
 
 #### 3.1.3. Iluminación
 
 La ultima sección de la definición de la escena virtual es la iluminación. La iluminación que se utiliza se puede dividir en dos tipos de fuente: el cielo y fuentes puntuales de luz.
 
-El cielo ilumina de manera uniforme la escena mientras que las fuentes de luz puntuales siguen el modelo de reflexión de Blinn-Phong, que describe la forma en la que una superficie refleja la luz como una combinación de la iluminación difusa y la iluminación especular. No se incluye el término ambiental del modelo ya que se utiliza el cielo.
+El cielo ilumina de manera uniforme la escena mientras que las fuentes de luz puntuales siguen el modelo de reflexión de Blinn-Phong \[[Blinn](https://doi.org/10.1145%2F563858.563893)], que describe la forma en la que una superficie refleja la luz como una combinación de la iluminación difusa y la iluminación especular. No se incluye el término ambiental del modelo ya que se utiliza el cielo.
 
 
 | ![](Resources/05_agg.png) |
@@ -153,7 +146,9 @@ El cielo ilumina de manera uniforme la escena mientras que las fuentes de luz pu
 
 > En este apartado se detalla el algoritmo de trazado de rayos utilizado para generar imágenes, explicando cómo se simulan los rayos de luz desde la fuente hasta el detector y las principales diferencias con la realidad. (cámara, generación de rayos, muestreo, intersección, interacción con materiales, número máximo de rebotes, iluminación) (Referencias a los libros) (Imágenes de los resultados, la del final del primer libro y alguna malla)
 
-En este trabajo concretamente se utiliza el algoritmo de trazado de caminos (o path tracing, en inglés), el cual simula más efectos que el trazado de rayos convencional gracias al uso de simulaciones de Monte Carlo.
+> Mover a 3?
+
+En este trabajo concretamente se utiliza el algoritmo de trazado de caminos (o path tracing, en inglés), el cual simula más efectos que el trazado de rayos convencional gracias al uso de simulaciones de Monte Carlo (utilizando muestreo aleatorio).
 
 |                                        ![](Resources/bounces.svg)                                        |
 | :------------------------------------------------------------------------------------------------------: |
@@ -187,14 +182,13 @@ La camara se define mediante su centro y su viewport (véase Figura X). El centr
 Una vez lanzado el rayo se comprueba si intersecta con algún objeto de la escena iterando sobre ellos y se selecciona el objeto intersectado más cercano. De la intersección se obtiene el punto, la distancia respecto al origen del rayo, la normal de la superficie y el material del objeto. Con esta información, para la iluminación ambiente, se puede calcular la atenuación y la dirección del rayo dispersado dependiendo del material. Este proceso se repite hasta que el rayo dispersado no intersecta ningún objeto (o "escapa") y se atenúa con el color del cielo o, si alcanza el numero máximo de rebotes definido por el trazador de rayos, la atenuación sería total. Y para la iluminación puntual, siguiendo la misma ruta del rayo de la iluminación ambiente, se comprueba si el punto es visible para la fuente de luz trazando un rayo nuevo y, si lo es, se calcula la iluminación especular y la iluminación difusa, esta última en el caso de que el material sea difuso. 
 
 
-| ![](Resources/06_end_book_1.png) |
-|:---:|
+|             ![](Resources/06_end_book_1.png)             |
+| :------------------------------------------------------: |
 | *Figura X: Render de la escena final descrita en RTIOW.* |
-
 
 #### 3.2.2. Calculo de amplitud y fase: aproximación escalar de la propagación de ondas electromagnéticas
 
-> En este apartado se explicará el proceso de modificación del trazador de rayos descrito en el apartado anterior para el cálculo de la amplitud y la fase de las ondas electromagnéticas. (SLM, nubes de puntos, obtención de la amplitud y fase) (Referencias a los estudios) (Imágenes de los resultados, preferiblemente con poco ruido)
+> En este apartado se explica el proceso de modificación del trazador de rayos descrito en el apartado anterior para el cálculo de la amplitud y la fase de las ondas electromagnéticas. (SLM, nubes de puntos, obtención de la amplitud y fase) (Referencias a los estudios) (Imágenes de los resultados, preferiblemente con poco ruido)
 
 Una vez implementado el trazador de rayos para la generación de imágenes, se ha modificado para generar hologramas. Las principales modificaciones realizadas han sido el proceso de lanzar rayos y el cambio del calculo del color del rayo a la amplitud y fase.
 
