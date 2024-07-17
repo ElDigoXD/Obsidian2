@@ -33,6 +33,10 @@ La generación de hologramas por computador (Computer-Generated Holography o CGH
 
 > se ha de tener en cuenta que la naturaleza de la luz tiene amplitud y fase... ecuación
 
+$$
+H(x,y) = \sum\limits_{j=1}^N a_j\exp\Big(\frac{\pi i}{\lambda z_j}\big[(x-x_j)^2 + (y-y_j)^2 \big]\Big)
+$$
+
 En el estudio \[2] se ofrece una vision general del estado del arte en CGH, una clasificación de los algoritmos y diferentes técnicas de aceleración.
 
 Entre los algoritmos clasificados se encuentran los dos que se van a utilizar en este trabajo:
