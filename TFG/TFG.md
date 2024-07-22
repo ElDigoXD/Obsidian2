@@ -62,6 +62,8 @@ La naturaleza del algoritmo de trazado de rayos permite que pueda ser acelerado 
 > convolución,
 > Reordenar y definir amplitud y fase.
 
+
+
 ## 3. Proceso de síntesis de escenas virtuales en 3D mediante hologramas digitales
 
 En este apartado se detalla el proceso de síntesis, dividido en tres secciones: definición de la escena virtual, generación de hologramas digitales y reconstrucción de la escena.
