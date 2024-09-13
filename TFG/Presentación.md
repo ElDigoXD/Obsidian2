@@ -8,8 +8,6 @@ La holografía es una técnica que permite capturar y reconstruir el campo de on
 
 ---
 
-Los hologramas de un objeto se obtienen capturando el frente de ondas que proviene de un objeto cuando se ilumina, proceso análogo a realizar una fotografía. 
-
 Dicho fenómeno que también se puede simular generando el holograma mediante un computador (CGH), actividad análoga pero muchísimo más demandante de cálculo, a la conocida generación de imágenes sintéticas por computador. 
 
 Sin embargo, uno de los mayores desafíos de CGH’s es obtenerlos en tiempos computacionales aceptables. 
@@ -62,7 +60,6 @@ Tal y como se ha mencionado anteriormente, se tiene como objetivo generar hologr
 
 La técnica de la nube de puntos consiste en discretizar la escena en puntos luminosos y obtener la suma de todas las funciones de dispersión de los puntos en el plano del holograma
 
----
 
 Se puede observar en la figura la nube de puntos generada a partir de un barco y la función de dispersión de un punto evaluada en el plano H.
 
