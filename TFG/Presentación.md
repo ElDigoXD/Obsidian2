@@ -16,13 +16,9 @@ Sin embargo, uno de los mayores desafíos de CGH’s es obtenerlos en tiempos co
 
 En este trabajo de final de grado se aborda la generación de hologramas sintéticos, para ello, se han diseñado e implementado: 
 
-1. Un trazador de rayos estándar para generar imágenes sintéticas (2D) por computador el cuál simula el comportamiento de los rayos de luz basado en la física (Physically Based Ray Tracing o PBRT, en inglés). 
+1. Un trazador de rayos estándar para generar imágenes sintéticas (2D) por computador.
 2. Un sistema de generación de hologramas (3D) por computador que hace uso de la técnica de modelado geométrico basada en nubes de puntos y la técnica de trazado de rayos, pero aplicada a múltiples posiciones del ojo.
 3. Por último, con objeto de demostrar la validez de los resultados obtenidos, se visualizan los hologramas sintéticos generados a partir de una escena virtual, en un laboratorio de óptica holográfica. 
-
----
-
-Dado que la exigencia computacional de este problema es muy alta y mucho mayor que las aplicaciones tradicionales de la computación gráfica, este proyecto propone una solución adecuada para abordar este problema que considera la arquitectura del software, los algoritmos y la alta paralelización del problema. Esta última, tanto en CPU como en GPU utilizando los lenguajes de programación C++ y CUDA.
 
 ---
 
