@@ -1,0 +1,2 @@
+- 24/10: Configurar proyecto cuda nuevo
+- 23/10: Actualizar linux
