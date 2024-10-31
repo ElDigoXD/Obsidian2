@@ -1,3 +1,4 @@
+- 30/10: Primer triángulo (cgh)
 - 29/10: Añadir clases (cgh), encontrar fuente de fabrica (rober)
 - 28/10: Configurar arduino IDE, compilar y cargar (rober)
 - 25/10: Añadir librerias (cgh) e invesitgar (rober)
