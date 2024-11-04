@@ -1,3 +1,4 @@
+- 4/11: Primer holograma y paralelización mediante openmp
 - 31/10: Primer triangulo y avances en holografía (cgh)
 - 30/10: Casi primer triángulo (cgh)
 - 29/10: Añadir clases (cgh), encontrar fuente de fabrica (rober)
