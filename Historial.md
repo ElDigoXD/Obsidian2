@@ -1,3 +1,4 @@
+- 6/11: Añadir wireframe y avanzar obj reader (cgh)
 - 5/11: Investigación VBH/intel y cambiar Scene (cgh)
 - 4/11: Primer holograma y paralelización mediante openmp
 - 31/10: Primer triangulo y avances en holografía (cgh)
