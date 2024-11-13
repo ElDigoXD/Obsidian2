@@ -1,3 +1,8 @@
+- 13/11: Implementar BVH (mejora 4x) (cgh)
+- 12/11: Mejorar ObjReader, empezar con BVH (cgh)
+- 11/11: Añadir AABBs, escenas y sampling (cgh)
+- 8/11: Añadir AABBs, escenas y sampling (cgh)
+- 7/11: Añadir AABBs, escenas y sampling (cgh)
 - 6/11: Añadir wireframe y avanzar obj reader (cgh)
 - 5/11: Investigación VBH/intel y cambiar Scene (cgh)
 - 4/11: Primer holograma y paralelización mediante openmp
