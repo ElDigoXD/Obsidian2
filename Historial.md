@@ -1,3 +1,5 @@
+- 15/11: Re-escribir Scene y Mesh para soportar multiples mallas (cgh)
+- 14/11: Re-escribir Scene y Mesh para soportar multiples mallas (cgh)
 - 13/11: Implementar BVH (mejora 4x) (cgh)
 - 12/11: Mejorar ObjReader, empezar con BVH (cgh)
 - 11/11: Añadir AABBs, escenas y sampling (cgh)
