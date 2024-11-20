@@ -1,3 +1,6 @@
+- 20/11: Añadir luz puntual
+- 19/11: Actualizar render_cgh y resoluciones (cgh) 
+- 18/11: Webdev y embeded (rover)
 - 15/11: Re-escribir Scene y Mesh para soportar multiples mallas (cgh)
 - 14/11: Re-escribir Scene y Mesh para soportar multiples mallas (cgh)
 - 13/11: Implementar BVH (mejora 4x) (cgh)
