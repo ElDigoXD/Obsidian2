@@ -1,4 +1,5 @@
-- 20/11: Añadir luz puntual
+- 21/11: Arbol de navidad y mejoras en la GUI (cgh) empezar con cordova (rover)
+- 20/11: Añadir luz puntual (cgh)
 - 19/11: Actualizar render_cgh y resoluciones (cgh) 
 - 18/11: Webdev y embeded (rover)
 - 15/11: Re-escribir Scene y Mesh para soportar multiples mallas (cgh)
