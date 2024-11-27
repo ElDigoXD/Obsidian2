@@ -1,3 +1,7 @@
+- 27/11: GUI (rover)
+- 26/11: GUI (rover)
+- 25/11: GUI (rover)
+- 22/11: GUI (rover)
 - 21/11: Arbol de navidad y mejoras en la GUI (cgh) empezar con cordova (rover)
 - 20/11: Añadir luz puntual (cgh)
 - 19/11: Actualizar render_cgh y resoluciones (cgh) 
